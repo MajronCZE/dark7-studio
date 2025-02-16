@@ -25,7 +25,10 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap"
+    rel="stylesheet"
+  />
   
   <!-- Hlavní CSS -->
   <link rel="stylesheet" href="css/style.css" />
@@ -72,7 +75,8 @@
           <span class="line neon">Horror Experiences</span>
         </h1>
         <p>
-          Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na temnou atmosféru, napětí a inovativní hororové projekty.
+          Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na
+          temnou atmosféru, napětí a inovativní hororové projekty.
         </p>
         <button class="btn" onclick="scrollToSection('projects')">
           Prohlédnout projekty
@@ -87,21 +91,33 @@
         <p>Mrkni na ukázky naší práce. Každý projekt je zhmotněním našich nočních můr a kreativity.</p>
         <div class="project-grid">
           <div class="project-item tilt">
-            <img src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt1" alt="Ukázka projektu 1" loading="lazy" />
+            <img 
+              src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt1" 
+              alt="Ukázka projektu 1" 
+              loading="lazy" 
+            />
             <div class="project-info">
               <h3>Projekt 1</h3>
               <p>Krátký popis atmosférického hororu.</p>
             </div>
           </div>
           <div class="project-item tilt">
-            <img src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt2" alt="Ukázka projektu 2" loading="lazy" />
+            <img 
+              src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt2" 
+              alt="Ukázka projektu 2" 
+              loading="lazy" 
+            />
             <div class="project-info">
               <h3>Projekt 2</h3>
               <p>Experimentální thriller s důrazem na psychologii.</p>
             </div>
           </div>
           <div class="project-item tilt">
-            <img src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt3" alt="Ukázka projektu 3" loading="lazy" />
+            <img 
+              src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt3" 
+              alt="Ukázka projektu 3" 
+              loading="lazy" 
+            />
             <div class="project-info">
               <h3>Projekt 3</h3>
               <p>Akční horor s temným příběhem a znepokojivou atmosférou.</p>
@@ -201,9 +217,10 @@
         <h2>Kontakt</h2>
         <p>Chceš se nás na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš nám!</p>
         <form>
-          <input type="text" placeholder="Jméno" required aria-label="Jméno" />
-          <input type="email" placeholder="Email" required aria-label="Email" />
-          <textarea placeholder="Zpráva" rows="5" required aria-label="Zpráva"></textarea>
+          <!-- Doplněno id/name pro lepší autofill -->
+          <input type="text" id="name" name="name" placeholder="Jméno" required aria-label="Jméno" />
+          <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email" />
+          <textarea id="message" name="message" placeholder="Zpráva" rows="5" required aria-label="Zpráva"></textarea>
           <button type="submit" class="btn">Odeslat</button>
         </form>
       </div>
