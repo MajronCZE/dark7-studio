@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
     setTimeout(() => { preloader.style.display = 'none'; }, 500);
   }, 800);
   initGsapAnimations();
-  updateProgressBar(); // inicializace progress baru
+  updateProgressBar();
 });
 
 // ===== Custom Cursor =====
@@ -100,7 +100,6 @@ function flipTile(tile) {
   const projectItem = tile.querySelector('.project-item');
   const isFlipped = projectItem.classList.contains('flipped');
   if (!isFlipped) {
-    // Při otevírání dlaždice se přesune do středu
     tile.scrollIntoView({ behavior: "smooth", block: "center" });
   }
   projectItem.classList.toggle('flipped');
@@ -125,7 +124,6 @@ function updateProgressBar() {
   const sectionIds = Array.from(sections).map(s => s.id);
   let activeSectionId = null;
   
-  // Určíme poslední sekci, jejíž horní hrana je nad polovinou viewportu
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
     if (rect.top < window.innerHeight / 2) {
