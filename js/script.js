@@ -35,7 +35,7 @@ function scrollToSection(sectionId) {
 function initGsapAnimations() {
   gsap.registerPlugin(ScrollTrigger);
   
-  // Hero animace (sekvenční)
+  // Hero animace
   const heroTl = gsap.timeline();
   heroTl.from("#home h1 .line", {
     y: 50,
@@ -57,7 +57,7 @@ function initGsapAnimations() {
     ease: "power2.out",
   }, "-=0.4");
 
-  // Animace pro sekce s ScrollTrigger
+  // Animace pro sekce
   const sections = document.querySelectorAll('section.fade-in');
   sections.forEach(sec => {
     gsap.from(sec, {
@@ -74,14 +74,36 @@ function initGsapAnimations() {
   });
 }
 
+// ===== Flip efekt pro projektové dlaždice =====
+function flipCard(tile) {
+  tile.classList.toggle("flipped");
+}
+
+// ===== Jednoduchý slider galerie =====
+function nextSlide(event, btn) {
+  event.stopPropagation();
+  const sliderWrapper = btn.parentElement.querySelector(".slider-wrapper");
+  let currentIndex = parseInt(sliderWrapper.getAttribute("data-index")) || 0;
+  const images = sliderWrapper.querySelectorAll(".slider-image");
+  currentIndex = (currentIndex + 1) % images.length;
+  sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+  sliderWrapper.setAttribute("data-index", currentIndex);
+}
+
+function prevSlide(event, btn) {
+  event.stopPropagation();
+  const sliderWrapper = btn.parentElement.querySelector(".slider-wrapper");
+  let currentIndex = parseInt(sliderWrapper.getAttribute("data-index")) || 0;
+  const images = sliderWrapper.querySelectorAll(".slider-image");
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+  sliderWrapper.setAttribute("data-index", currentIndex);
+}
+
 // ===== Scroll To Top Button =====
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 300) {
-    scrollTopBtn.classList.add('visible');
-  } else {
-    scrollTopBtn.classList.remove('visible');
-  }
+  scrollTopBtn.classList.toggle('visible', window.pageYOffset > 300);
 });
 scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -90,13 +112,13 @@ scrollTopBtn.addEventListener('click', () => {
 // ===== Header shrink on scroll =====
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-  header.style.padding = window.pageYOffset > 50 ? '10px 20px' : '15px 20px';
+  header.style.padding = window.pageYOffset > 50 ? '10px 40px' : '15px 40px';
 });
 
 // ===== Tilt Effect =====
 const tiltElements = document.querySelectorAll('.tilt');
-tiltElements.forEach((el) => {
-  el.addEventListener('mousemove', (e) => {
+tiltElements.forEach(el => {
+  el.addEventListener('mousemove', e => {
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -109,11 +131,28 @@ tiltElements.forEach((el) => {
   });
 });
 
-// ===== Progress Slider =====
+// ===== Progress Slider a segmenty =====
 const progressBar = document.getElementById('progressBar');
+const progressSegments = document.querySelectorAll('.progress-segment');
+const sectionIds = ["home", "projects", "team", "blog", "news", "faq", "contact"];
+
 window.addEventListener('scroll', () => {
+  // Aktualizace continuous progress
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const progress = (scrollTop / scrollHeight) * 100;
   progressBar.style.width = progress + '%';
+
+  // Aktualizace aktivního segmentu
+  sectionIds.forEach((id, index) => {
+    const section = document.getElementById(id);
+    const segment = document.querySelector(`.progress-segment[data-section="${id}"]`);
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    if (scrollTop >= sectionTop - 50 && scrollTop < sectionTop + sectionHeight - 50) {
+      segment.classList.add("active");
+    } else {
+      segment.classList.remove("active");
+    }
+  });
 });
