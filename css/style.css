@@ -89,7 +89,7 @@ header {
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
-  padding: 5px 10px; /* Reduced padding pro lepší zarovnání k okrajům */
+  padding: 5px 10px; /* Zarovnání k okrajům */
 }
 
 .nav-container {
@@ -145,36 +145,18 @@ nav ul li a:hover {
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Responsivní navigace */
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-  nav ul {
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: rgba(26,26,26,0.95);
-    width: 200px;
-    display: none;
-  }
-  nav ul.show { display: flex; }
-  nav ul li { margin: 15px 0; }
-}
-
 /**************************************************************
   Sekce
 **************************************************************/
-section { padding: 100px 20px; min-height: 100vh; }
-
-.section-content {
-  margin: 0 auto;
-  text-align: center;
+/* Zkrácený padding a odstranění min-height pro kratší scroll */
+section {
+  padding: 50px 20px;
 }
 
-/**************************************************************
-  Hero sekce
-**************************************************************/
+/* Pro hero sekci ponecháme větší odsazení */
 .section-hero {
+  padding-top: 100px;
+  padding-bottom: 100px;
   position: relative;
   display: flex;
   align-items: center;
@@ -197,10 +179,12 @@ section { padding: 100px 20px; min-height: 100vh; }
   z-index: -1;
 }
 
+/**************************************************************
+  Hero Content
+**************************************************************/
 .hero-content {
   max-width: 800px;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  text-align: center;
 }
 
 .hero-content h1 {
@@ -215,7 +199,9 @@ section { padding: 100px 20px; min-height: 100vh; }
 
 .hero-content p { font-size: 1.2em; margin-bottom: 40px; }
 
-/* Zaoblená tlačítka */
+/**************************************************************
+  Tlačítka
+**************************************************************/
 .btn {
   background-color: var(--accent-color);
   color: var(--bg-color);
@@ -245,7 +231,7 @@ section { padding: 100px 20px; min-height: 100vh; }
   margin-top: 40px;
 }
 
-/* Flipping Tile Styles */
+/* Flipping Tile Styles s obnoveným zaoblením */
 .project-tile {
   perspective: 1000px;
   cursor: pointer;
@@ -255,7 +241,9 @@ section { padding: 100px 20px; min-height: 100vh; }
   transition: transform 0.6s;
   transform-style: preserve-3d;
   height: 0;
-  padding-bottom: 66.66%; /* Udržení poměru stran (3:2) */
+  padding-bottom: 66.66%; /* Poměr stran 3:2 */
+  overflow: hidden;
+  border-radius: 20px;
 }
 .project-item > .front,
 .project-item > .back {
@@ -275,7 +263,7 @@ section { padding: 100px 20px; min-height: 100vh; }
   background: var(--bg-color-light);
   padding: 15px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  overflow: auto;
+  overflow-y: auto;
 }
 .project-item.flipped {
   transform: rotateY(180deg) scale(1.1);
@@ -457,6 +445,10 @@ footer {
   border-radius: 50px;
   cursor: pointer;
   transition: background 0.3s;
+  opacity: 0; /* skryté dokud nejsou dosaženy */
+}
+.progress-segment.visible {
+  opacity: 1;
 }
 .progress-segment.active {
   background: var(--accent-color);
