@@ -35,18 +35,18 @@
 </head>
 <body>
   <!-- Preloader -->
-  <div id="preloader">
+  <div id="preloader" aria-hidden="true">
     <div class="loader"></div>
   </div>
 
   <!-- Custom cursor -->
-  <div id="cursor"></div>
+  <div id="cursor" aria-hidden="true"></div>
 
-  <!-- Header -->
-  <header id="header">
+  <!-- Header (role="banner") -->
+  <header id="header" role="banner">
     <div class="nav-container">
       <div class="nav-logo">Dark7 Studio</div>
-      <nav>
+      <nav role="navigation" aria-label="Hlavní navigace">
         <div class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
           <span></span>
           <span></span>
@@ -55,97 +55,190 @@
         <ul id="nav-menu">
           <li><a href="#home">Domů</a></li>
           <li><a href="#projects">Projekty</a></li>
-          <li><a href="#about">O nás</a></li>
+          <li><a href="#team">Tým</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#news">Novinky</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Kontakt</a></li>
         </ul>
       </nav>
     </div>
   </header>
   
-  <!-- Hero sekce -->
-  <section id="home" class="section-hero">
-    <div class="hero-content">
-      <h1 class="fade-in">
-        <span class="line">We Create</span>
-        <span class="line neon">Horror Experiences</span>
-      </h1>
-      <p class="fade-in" style="animation-delay: 0.3s;">
-        Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na
-        temnou atmosféru, napětí a inovativní hororové projekty.
-      </p>
-      <button class="btn fade-in" style="animation-delay: 0.6s;" onclick="scrollToSection('projects')">
-        Prohlédnout projekty
-      </button>
-    </div>
-  </section>
+  <!-- Hlavní obsah (role="main") -->
+  <main role="main">
+    <!-- Hero sekce -->
+    <section id="home" class="section-hero fade-in">
+      <div class="hero-content">
+        <h1>
+          <span class="line">We Create</span>
+          <span class="line neon">Horror Experiences</span>
+        </h1>
+        <p>
+          Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na
+          temnou atmosféru, napětí a inovativní hororové projekty.
+        </p>
+        <button class="btn" onclick="scrollToSection('projects')">
+          Prohlédnout projekty
+        </button>
+      </div>
+    </section>
 
-  <!-- Projekty (Portfolio) -->
-  <section id="projects" class="fade-in">
-    <div class="section-content">
-      <h2>Naše projekty</h2>
-      <p>Mrkni na ukázky naší práce. Každý projekt je zhmotněním našich nočních můr a kreativity.</p>
-      <div class="project-grid">
-        <div class="project-item tilt">
-          <img src="assets/images/tilt1.jpg" alt="Projekt 1" />
-          <div class="project-info">
-            <h3>Projekt 1</h3>
-            <p>Krátký popis atmosférického hororu.</p>
+    <!-- Projekty (Portfolio) -->
+    <section id="projects" class="fade-in">
+      <div class="section-content">
+        <h2>Naše projekty</h2>
+        <p>Mrkni na ukázky naší práce. Každý projekt je zhmotněním našich nočních můr a kreativity.</p>
+        <div class="project-grid">
+          <div class="project-item tilt">
+            <img 
+              src="assets/images/tilt1.jpg" 
+              alt="Ukázka projektu 1" 
+              loading="lazy" 
+            />
+            <div class="project-info">
+              <h3>Projekt 1</h3>
+              <p>Krátký popis atmosférického hororu.</p>
+            </div>
           </div>
-        </div>
-        <div class="project-item tilt">
-          <img src="assets/images/tilt2.jpg" alt="Projekt 2" />
-          <div class="project-info">
-            <h3>Projekt 2</h3>
-            <p>Experimentální thriller s důrazem na psychologii.</p>
+          <div class="project-item tilt">
+            <img 
+              src="assets/images/tilt2.jpg" 
+              alt="Ukázka projektu 2" 
+              loading="lazy" 
+            />
+            <div class="project-info">
+              <h3>Projekt 2</h3>
+              <p>Experimentální thriller s důrazem na psychologii.</p>
+            </div>
           </div>
-        </div>
-        <div class="project-item tilt">
-          <img src="assets/images/tilt3.jpg" alt="Projekt 3" />
-          <div class="project-info">
-            <h3>Projekt 3</h3>
-            <p>Akční horor s temným příběhem a znepokojivou atmosférou.</p>
+          <div class="project-item tilt">
+            <img 
+              src="assets/images/tilt3.jpg" 
+              alt="Ukázka projektu 3" 
+              loading="lazy" 
+            />
+            <div class="project-info">
+              <h3>Projekt 3</h3>
+              <p>Akční horor s temným příběhem a znepokojivou atmosférou.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- O nás -->
-  <section id="about" class="fade-in">
-    <div class="section-content">
-      <h2>O nás</h2>
-      <p>
-        Jsme malý tým nadšenců do hororového žánru. Naším cílem je přinášet
-        hráčům jedinečné, napínavé a mrazivé zážitky. Baví nás experimentovat
-        s designem, atmosférou i příběhem, abychom vytvořili nezapomenutelné
-        tituly.
-      </p>
-    </div>
-  </section>
+    <!-- Tým -->
+    <section id="team" class="fade-in">
+      <div class="section-content">
+        <h2>Náš tým</h2>
+        <p>Seznam se s lidmi, kteří stojí za temnou vizí Dark7 Studio.</p>
+        <div class="project-grid">
+          <div class="project-item">
+            <div class="project-info">
+              <h3>Jakub "Kubo"</h3>
+              <p>3D grafik, level designér, hororový nadšenec.</p>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-info">
+              <h3>Martin</h3>
+              <p>Programátor a kódový mág, zbožňuje AI a VR technologie.</p>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-info">
+              <h3>Tereza</h3>
+              <p>Zvuková designérka, stará se o mrazivé efekty a hudbu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Kontakt -->
-  <section id="contact" class="fade-in">
-    <div class="section-content">
-      <h2>Kontakt</h2>
-      <p>Chceš se nás na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš nám!</p>
-      <form>
-        <input type="text" placeholder="Jméno" required />
-        <input type="email" placeholder="Email" required />
-        <textarea placeholder="Zpráva" rows="5" required></textarea>
-        <button type="submit" class="btn">Odeslat</button>
-      </form>
-    </div>
-  </section>
+    <!-- Blog -->
+    <section id="blog" class="fade-in">
+      <div class="section-content">
+        <h2>Blog</h2>
+        <p>Přečti si naše postřehy z vývoje, novinky ze světa her a naše inspirace.</p>
+        <div class="blog-grid">
+          <article class="blog-post">
+            <h3>Jak vzniká atmosféra hororu?</h3>
+            <p>Krátký úryvek článku o tom, jak tvoříme hutnou atmosféru...</p>
+            <a href="#" class="btn btn-small">Číst více</a>
+          </article>
+          <article class="blog-post">
+            <h3>Nejlepší hororové hry poslední dekády</h3>
+            <p>Seznam našich oblíbených titulů, které nás inspirovaly...</p>
+            <a href="#" class="btn btn-small">Číst více</a>
+          </article>
+          <article class="blog-post">
+            <h3>DevLog #1: Začínáme</h3>
+            <p>První vývojářský deník – co máme v plánu, jak postupujeme...</p>
+            <a href="#" class="btn btn-small">Číst více</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
+    <!-- Novinky -->
+    <section id="news" class="fade-in">
+      <div class="section-content">
+        <h2>Novinky</h2>
+        <ul class="news-list">
+          <li><strong>20. 2. 2025:</strong> Zahájení uzavřené bety naší nejnovější hry.</li>
+          <li><strong>15. 3. 2025:</strong> Rozšíření týmu o 2 nové členy.</li>
+          <li><strong>1. 4. 2025:</strong> Dark7 Studio se účastní herního veletrhu HorrorCon.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="fade-in">
+      <div class="section-content">
+        <h2>FAQ</h2>
+        <div class="faq-item">
+          <h3>Jak nás kontaktovat ohledně spolupráce?</h3>
+          <p>Stačí nám napsat přes formulář dole v sekci Kontakt nebo na náš e-mail.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Máte i singleplayer / multiplayer tituly?</h3>
+          <p>V současnosti se zaměřujeme především na singleplayerové horory, ale multiplayer máme v plánu do budoucna.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Jaké platformy podporujete?</h3>
+          <p>Aktuálně cílíme na PC (Windows, Linux) a zvažujeme i konzolové verze.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="contact" class="fade-in">
+      <div class="section-content">
+        <h2>Kontakt</h2>
+        <p>Chceš se nás na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš nám!</p>
+        <form>
+          <input type="text" placeholder="Jméno" required aria-label="Jméno" />
+          <input type="email" placeholder="Email" required aria-label="Email" />
+          <textarea placeholder="Zpráva" rows="5" required aria-label="Zpráva"></textarea>
+          <button type="submit" class="btn">Odeslat</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (role="contentinfo") -->
+  <footer role="contentinfo">
     <p>&copy; 2025 Dark7 Studio. Všechna práva vyhrazena.</p>
   </footer>
 
   <!-- Scroll To Top Button -->
   <button id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
 
-  <!-- JavaScript -->
+  <!-- GSAP a ScrollTrigger (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.5/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- Hlavní JavaScript -->
   <script src="js/script.js"></script>
 </body>
 </html>

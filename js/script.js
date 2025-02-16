@@ -7,7 +7,10 @@ window.addEventListener('load', () => {
     setTimeout(() => {
       preloader.style.display = 'none';
     }, 500);
-  }, 800); 
+  }, 800);
+
+  // Spustíme GSAP animace po načtení stránky
+  initGsapAnimations();
 });
 
 // ===== Custom Cursor =====
@@ -36,19 +39,47 @@ function scrollToSection(sectionId) {
   }
 }
 
-// ===== IntersectionObserver pro fade-in animace =====
-const faders = document.querySelectorAll('.fade-in');
-const appearOptions = { threshold: 0.2 };
+// ===== GSAP a ScrollTrigger Animace =====
+function initGsapAnimations() {
+  gsap.registerPlugin(ScrollTrigger);
 
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
+  // Hero animace (sekvenční)
+  const heroTl = gsap.timeline();
+  heroTl.from("#home h1 .line", {
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.out",
+    stagger: 0.2,
+  }).from("#home p", {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.out",
+  }, "-=0.4")
+  .from("#home .btn", {
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+  }, "-=0.4");
+
+  // Fade-in sekce s ScrollTrigger
+  const sections = document.querySelectorAll('section.fade-in');
+  sections.forEach(sec => {
+    gsap.from(sec, {
+      scrollTrigger: {
+        trigger: sec,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      ease: "power2.out"
+    });
   });
-}, appearOptions);
-
-faders.forEach(fader => appearOnScroll.observe(fader));
+}
 
 // ===== Scroll To Top Button =====
 const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -76,16 +107,14 @@ window.addEventListener('scroll', () => {
 
 // ===== Tilt Effect (vanilkové řešení) =====
 const tiltElements = document.querySelectorAll('.tilt');
-
 tiltElements.forEach((el) => {
   el.addEventListener('mousemove', (e) => {
     const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left; // X pozice uvnitř elementu
-    const y = e.clientY - rect.top;  // Y pozice uvnitř elementu
+    const x = e.clientX - rect.left; 
+    const y = e.clientY - rect.top;  
     const width = rect.width;
     const height = rect.height;
     
-    // Vypočítej offset
     const rotateX = (y - height / 2) / 10; 
     const rotateY = (x - width / 2) / 10;
 
@@ -96,4 +125,3 @@ tiltElements.forEach((el) => {
     el.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
   });
 });
-

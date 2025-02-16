@@ -26,7 +26,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   scroll-behavior: smooth;
-  overflow-x: hidden; /* Pro jistotu, pokud by nějaká animace vyčnívala */
+  overflow-x: hidden;
 }
 
 /**************************************************************
@@ -189,6 +189,7 @@ section {
 .section-content {
   max-width: 1000px;
   margin: 0 auto;
+  text-align: center;
 }
 
 /**************************************************************
@@ -219,7 +220,6 @@ section {
 }
 
 .hero-content {
-  text-align: center;
   max-width: 800px;
   padding-top: 100px; /* kvůli fixnímu headeru */
   padding-bottom: 100px;
@@ -229,8 +229,6 @@ section {
   font-size: 3.5em;
   margin-bottom: 20px;
   line-height: 1.2;
-  opacity: 0;
-  animation: fadeInUp var(--transition-speed) ease forwards;
 }
 
 .hero-content h1 .line {
@@ -245,8 +243,6 @@ section {
 .hero-content p {
   font-size: 1.2em;
   margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeInUp var(--transition-speed) ease forwards;
 }
 
 .btn {
@@ -258,13 +254,17 @@ section {
   font-size: 1em;
   cursor: pointer;
   transition: transform 0.3s, background-color 0.3s;
-  opacity: 0;
-  animation: fadeInUp var(--transition-speed) ease forwards;
 }
 
 .btn:hover {
   background-color: var(--accent-hover);
   transform: scale(1.05);
+}
+
+/* Malé tlačítko */
+.btn-small {
+  padding: 10px 20px;
+  font-size: 0.9em;
 }
 
 /**************************************************************
@@ -294,7 +294,6 @@ section {
 .project-item img {
   width: 100%;
   display: block;
-  pointer-events: none;
 }
 
 .project-info {
@@ -308,12 +307,39 @@ section {
 }
 
 /**************************************************************
-  O nás
+  Tým, Blog, Novinky, FAQ
 **************************************************************/
-#about p {
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.blog-post {
+  background: var(--bg-color-light);
+  padding: 20px;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+
+.news-list {
+  text-align: left;
   margin-top: 20px;
-  font-size: 1.1em;
-  line-height: 1.5;
+  line-height: 1.8;
+}
+
+.faq-item {
+  background: var(--bg-color-light);
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+  text-align: left;
 }
 
 /**************************************************************
@@ -377,6 +403,15 @@ footer {
 /**************************************************************
   Animace
 **************************************************************/
+.fade-in {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -386,16 +421,6 @@ footer {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Třída pro IntersectionObserver */
-.fade-in {
-  opacity: 0;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  animation: fadeInUp var(--transition-speed) ease forwards;
 }
 
 /**************************************************************
