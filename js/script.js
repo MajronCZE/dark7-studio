@@ -6,7 +6,6 @@ window.addEventListener('load', () => {
     setTimeout(() => { preloader.style.display = 'none'; }, 500);
   }, 800);
   initGsapAnimations();
-  updateProgressBar();
 });
 
 // ===== Custom Cursor =====
@@ -29,15 +28,14 @@ hamburger.addEventListener('click', () => {
 // ===== Smooth Scroll =====
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
-  if (section) { 
-    section.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-  }
+  if (section) { section.scrollIntoView({ behavior: 'smooth' }); }
 }
 
 // ===== GSAP a ScrollTrigger Animace =====
 function initGsapAnimations() {
   gsap.registerPlugin(ScrollTrigger);
   
+  // Hero animace (sekvenční)
   const heroTl = gsap.timeline();
   heroTl.from("#home h1 .line", {
     y: 50,
@@ -59,6 +57,7 @@ function initGsapAnimations() {
     ease: "power2.out",
   }, "-=0.4");
 
+  // Animace pro sekce s ScrollTrigger
   const sections = document.querySelectorAll('section.fade-in');
   sections.forEach(sec => {
     gsap.from(sec, {
@@ -83,7 +82,6 @@ window.addEventListener('scroll', () => {
   } else {
     scrollTopBtn.classList.remove('visible');
   }
-  updateProgressBar();
 });
 scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -92,71 +90,30 @@ scrollTopBtn.addEventListener('click', () => {
 // ===== Header shrink on scroll =====
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-  header.style.padding = window.pageYOffset > 50 ? '5px 10px' : '5px 10px';
+  header.style.padding = window.pageYOffset > 50 ? '10px 20px' : '15px 20px';
 });
 
-// ===== Flipping Projekt dlaždice =====
-function flipTile(tile) {
-  const projectItem = tile.querySelector('.project-item');
-  const isFlipped = projectItem.classList.contains('flipped');
-  if (!isFlipped) {
-    tile.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-  projectItem.classList.toggle('flipped');
-}
-
-// ===== Slider Funkcionalita =====
-function changeSlide(btn, direction) {
-  const slider = btn.closest('.slider');
-  const slides = slider.querySelectorAll('.slide');
-  let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
-  slides[currentIndex].classList.remove('active');
-  currentIndex += direction;
-  if (currentIndex < 0) currentIndex = slides.length - 1;
-  if (currentIndex >= slides.length) currentIndex = 0;
-  slides[currentIndex].classList.add('active');
-}
-
-// ===== Aktualizace Progress Baru =====
-function updateProgressBar() {
-  const sections = document.querySelectorAll('section');
-  const progressSegments = document.querySelectorAll('#progressSlider .progress-segment');
-  const sectionIds = Array.from(sections).map(s => s.id);
-  let activeSectionId = null;
-  
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight / 2) {
-      activeSectionId = section.id;
-    }
+// ===== Tilt Effect =====
+const tiltElements = document.querySelectorAll('.tilt');
+tiltElements.forEach((el) => {
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = (y - rect.height / 2) / 10;
+    const rotateY = (x - rect.width / 2) / 10;
+    el.style.transform = `perspective(600px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
-  
-  const activeIndex = sectionIds.indexOf(activeSectionId);
-  
-  progressSegments.forEach(segment => {
-    const target = segment.getAttribute('data-target');
-    const targetIndex = sectionIds.indexOf(target);
-    if (activeIndex !== -1 && targetIndex <= activeIndex) {
-      segment.classList.add('visible');
-    } else {
-      segment.classList.remove('visible');
-    }
-    if (targetIndex === activeIndex) {
-      segment.classList.add('active');
-    } else {
-      segment.classList.remove('active');
-    }
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
   });
-  
-  // Aktualizace zobrazeného názvu aktuální sekce
-  const activeSectionName = document.getElementById("activeSectionName");
-  if (activeSectionName) {
-    let activeText = "";
-    progressSegments.forEach(segment => {
-      if (segment.classList.contains('active')) {
-        activeText = segment.innerText;
-      }
-    });
-    activeSectionName.innerText = activeText;
-  }
-}
+});
+
+// ===== Progress Slider =====
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  progressBar.style.width = progress + '%';
+});

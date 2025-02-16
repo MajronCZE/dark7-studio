@@ -84,86 +84,32 @@
     <section id="projects" class="fade-in">
       <div class="section-content">
         <h2>Naše projekty</h2>
-        <p>Klikni na dlaždici pro zobrazení detailu projektu.</p>
+        <p>Velké klikací dlaždice – klikni na dlaždici pro detail projektu.</p>
         <div class="project-grid">
-          <!-- Projekt 1 -->
-          <div class="project-tile" onclick="flipTile(this)">
+          <a href="project1.html" class="project-tile">
             <div class="project-item">
-              <div class="front">
-                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
-                <div class="project-info">
-                  <h3>Projekt 1</h3>
-                </div>
-              </div>
-              <div class="back">
-                <div class="project-details">
-                  <p>Detailní popis projektu 1. Zde může být více informací o projektu.</p>
-                  <div class="slider">
-                    <button class="slider-btn prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                    <div class="slides">
-                      <img class="slide active" src="https://dummyimage.com/600x400/333333/ffffff&text=Detail+1" alt="Detail 1" />
-                      <img class="slide" src="https://dummyimage.com/600x400/444444/ffffff&text=Detail+2" alt="Detail 2" />
-                      <img class="slide" src="https://dummyimage.com/600x400/555555/ffffff&text=Detail+3" alt="Detail 3" />
-                    </div>
-                    <button class="slider-btn next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                  </div>
-                </div>
-                <button class="close-btn" onclick="event.stopPropagation(); flipTile(this.closest('.project-tile'));">Zavřít</button>
+              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
+              <div class="project-info">
+                <h3>Projekt 1</h3>
               </div>
             </div>
-          </div>
-          <!-- Projekt 2 -->
-          <div class="project-tile" onclick="flipTile(this)">
+          </a>
+          <a href="project2.html" class="project-tile">
             <div class="project-item">
-              <div class="front">
-                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
-                <div class="project-info">
-                  <h3>Projekt 2</h3>
-                </div>
-              </div>
-              <div class="back">
-                <div class="project-details">
-                  <p>Detailní popis projektu 2. Zde může být více informací o projektu.</p>
-                  <div class="slider">
-                    <button class="slider-btn prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                    <div class="slides">
-                      <img class="slide active" src="https://dummyimage.com/600x400/333333/ffffff&text=Detail+1" alt="Detail 1" />
-                      <img class="slide" src="https://dummyimage.com/600x400/444444/ffffff&text=Detail+2" alt="Detail 2" />
-                      <img class="slide" src="https://dummyimage.com/600x400/555555/ffffff&text=Detail+3" alt="Detail 3" />
-                    </div>
-                    <button class="slider-btn next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                  </div>
-                </div>
-                <button class="close-btn" onclick="event.stopPropagation(); flipTile(this.closest('.project-tile'));">Zavřít</button>
+              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
+              <div class="project-info">
+                <h3>Projekt 2</h3>
               </div>
             </div>
-          </div>
-          <!-- Projekt 3 -->
-          <div class="project-tile" onclick="flipTile(this)">
+          </a>
+          <a href="project3.html" class="project-tile">
             <div class="project-item">
-              <div class="front">
-                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
-                <div class="project-info">
-                  <h3>Projekt 3</h3>
-                </div>
-              </div>
-              <div class="back">
-                <div class="project-details">
-                  <p>Detailní popis projektu 3. Zde může být více informací o projektu.</p>
-                  <div class="slider">
-                    <button class="slider-btn prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                    <div class="slides">
-                      <img class="slide active" src="https://dummyimage.com/600x400/333333/ffffff&text=Detail+1" alt="Detail 1" />
-                      <img class="slide" src="https://dummyimage.com/600x400/444444/ffffff&text=Detail+2" alt="Detail 2" />
-                      <img class="slide" src="https://dummyimage.com/600x400/555555/ffffff&text=Detail+3" alt="Detail 3" />
-                    </div>
-                    <button class="slider-btn next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                  </div>
-                </div>
-                <button class="close-btn" onclick="event.stopPropagation(); flipTile(this.closest('.project-tile'));">Zavřít</button>
+              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
+              <div class="project-info">
+                <h3>Projekt 3</h3>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -259,18 +205,9 @@
     <p>&copy; 2025 Dark7 Studio. Všechna práva vyhrazena.</p>
   </footer>
 
-  <!-- Active Section Name Display (nad progress barem) -->
-  <div id="activeSectionName" class="active-section-name"></div>
-
-  <!-- Segmented Progress Slider -->
+  <!-- Progress Slider -->
   <div id="progressSlider">
-    <div class="progress-segment" data-target="home">Domů</div>
-    <div class="progress-segment" data-target="projects">Projekty</div>
-    <div class="progress-segment" data-target="team">Náš tým</div>
-    <div class="progress-segment" data-target="blog">Blog</div>
-    <div class="progress-segment" data-target="news">Novinky</div>
-    <div class="progress-segment" data-target="faq">FAQ</div>
-    <div class="progress-segment" data-target="contact">Kontakt</div>
+    <div id="progressBar"></div>
   </div>
 
   <!-- Scroll To Top Button -->
