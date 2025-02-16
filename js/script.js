@@ -6,6 +6,7 @@ window.addEventListener('load', () => {
     setTimeout(() => { preloader.style.display = 'none'; }, 500);
   }, 800);
   initGsapAnimations();
+  initProgressObserver();
 });
 
 // ===== Custom Cursor =====
@@ -35,7 +36,6 @@ function scrollToSection(sectionId) {
 function initGsapAnimations() {
   gsap.registerPlugin(ScrollTrigger);
   
-  // Hero animace (sekvenční)
   const heroTl = gsap.timeline();
   heroTl.from("#home h1 .line", {
     y: 50,
@@ -57,7 +57,6 @@ function initGsapAnimations() {
     ease: "power2.out",
   }, "-=0.4");
 
-  // Animace pro sekce s ScrollTrigger
   const sections = document.querySelectorAll('section.fade-in');
   sections.forEach(sec => {
     gsap.from(sec, {
@@ -109,11 +108,51 @@ tiltElements.forEach((el) => {
   });
 });
 
-// ===== Progress Slider =====
-const progressBar = document.getElementById('progressBar');
-window.addEventListener('scroll', () => {
-  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = (scrollTop / scrollHeight) * 100;
-  progressBar.style.width = progress + '%';
-});
+// ===== Flipping Projekt dlaždice =====
+function flipTile(tile) {
+  const projectItem = tile.querySelector('.project-item');
+  projectItem.classList.toggle('flipped');
+}
+
+// ===== Slider Funkcionalita =====
+function changeSlide(btn, direction) {
+  const slider = btn.closest('.slider');
+  const slides = slider.querySelectorAll('.slide');
+  let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+  slides[currentIndex].classList.remove('active');
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = slides.length - 1;
+  if (currentIndex >= slides.length) currentIndex = 0;
+  slides[currentIndex].classList.add('active');
+}
+
+// ===== Segmented Progress Slider =====
+function initProgressObserver() {
+  const progressSegments = document.querySelectorAll('#progressSlider .progress-segment');
+  
+  // Kliknutí na segment = scroll do sekce
+  progressSegments.forEach(segment => {
+    segment.addEventListener('click', function() {
+      const targetId = segment.getAttribute('data-target');
+      scrollToSection(targetId);
+    });
+  });
+  
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        progressSegments.forEach(segment => {
+          if (segment.getAttribute('data-target') === id) {
+            segment.classList.add('active');
+          } else {
+            segment.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.6 });
+  
+  sections.forEach(section => observer.observe(section));
+}
