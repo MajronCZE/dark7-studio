@@ -25,10 +25,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet" />
   
   <!-- Hlavní CSS -->
   <link rel="stylesheet" href="css/style.css" />
@@ -55,7 +52,7 @@
         <ul id="nav-menu">
           <li><a href="#home">Domů</a></li>
           <li><a href="#projects">Projekty</a></li>
-          <li><a href="#team">Tým</a></li>
+          <li><a href="#team">Náš tým</a></li>
           <li><a href="#blog">Blog</a></li>
           <li><a href="#news">Novinky</a></li>
           <li><a href="#faq">FAQ</a></li>
@@ -75,8 +72,7 @@
           <span class="line neon">Horror Experiences</span>
         </h1>
         <p>
-          Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na
-          temnou atmosféru, napětí a inovativní hororové projekty.
+          Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na temnou atmosféru, napětí a inovativní hororové projekty.
         </p>
         <button class="btn" onclick="scrollToSection('projects')">
           Prohlédnout projekty
@@ -88,68 +84,46 @@
     <section id="projects" class="fade-in">
       <div class="section-content">
         <h2>Naše projekty</h2>
-        <p>Mrkni na ukázky naší práce. Každý projekt je zhmotněním našich nočních můr a kreativity.</p>
+        <p>Mrkni na ukázky naší práce. Každý projekt je velká dlaždice, která po kliknutí přesměruje na detailní stránku projektu.</p>
         <div class="project-grid">
-          <div class="project-item tilt">
-            <img 
-              src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt1" 
-              alt="Ukázka projektu 1" 
-              loading="lazy" 
-            />
-            <div class="project-info">
-              <h3>Projekt 1</h3>
-              <p>Krátký popis atmosférického hororu.</p>
+          <a href="project1.html" class="project-tile">
+            <div class="project-item">
+              <img src="https://dummyimage.com/600x400/141414/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
+              <div class="project-info">
+                <h3>Projekt 1</h3>
+              </div>
             </div>
-          </div>
-          <div class="project-item tilt">
-            <img 
-              src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt2" 
-              alt="Ukázka projektu 2" 
-              loading="lazy" 
-            />
-            <div class="project-info">
-              <h3>Projekt 2</h3>
-              <p>Experimentální thriller s důrazem na psychologii.</p>
+          </a>
+          <a href="project2.html" class="project-tile">
+            <div class="project-item">
+              <img src="https://dummyimage.com/600x400/141414/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
+              <div class="project-info">
+                <h3>Projekt 2</h3>
+              </div>
             </div>
-          </div>
-          <div class="project-item tilt">
-            <img 
-              src="https://dummyimage.com/400x300/141414/ffffff&text=Tilt3" 
-              alt="Ukázka projektu 3" 
-              loading="lazy" 
-            />
-            <div class="project-info">
-              <h3>Projekt 3</h3>
-              <p>Akční horor s temným příběhem a znepokojivou atmosférou.</p>
+          </a>
+          <a href="project3.html" class="project-tile">
+            <div class="project-item">
+              <img src="https://dummyimage.com/600x400/141414/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
+              <div class="project-info">
+                <h3>Projekt 3</h3>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Tým -->
+    <!-- Náš tým -->
     <section id="team" class="fade-in">
       <div class="section-content">
         <h2>Náš tým</h2>
-        <p>Seznam se s lidmi, kteří stojí za temnou vizí Dark7 Studio.</p>
-        <div class="project-grid">
-          <div class="project-item">
-            <div class="project-info">
-              <h3>Jakub "Kubo"</h3>
-              <p>3D grafik, level designér, hororový nadšenec.</p>
-            </div>
-          </div>
-          <div class="project-item">
-            <div class="project-info">
-              <h3>Martin</h3>
-              <p>Programátor a kódový mág, zbožňuje AI a VR technologie.</p>
-            </div>
-          </div>
-          <div class="project-item">
-            <div class="project-info">
-              <h3>Tereza</h3>
-              <p>Zvuková designérka, stará se o mrazivé efekty a hudbu.</p>
-            </div>
+        <p>Jsem samostatný vývojář. Tady je moje profilovka:</p>
+        <div class="team-profile">
+          <img class="profile-pic" src="https://dummyimage.com/200x200/141414/ffffff&text=Kubo" alt="Profilová fotka Kuby" loading="lazy" />
+          <div class="profile-info">
+            <h3>Jakub "Kubo"</h3>
+            <p>3D grafik, level designér, hororový nadšenec a indie vývojář.</p>
           </div>
         </div>
       </div>
@@ -202,11 +176,11 @@
         </div>
         <div class="faq-item">
           <h3>Máte i singleplayer / multiplayer tituly?</h3>
-          <p>V současnosti se zaměřujeme především na singleplayerové horory, ale multiplayer máme v plánu do budoucna.</p>
+          <p>V současnosti se zaměřuji především na singleplayerové horory, ale multiplayer mám v plánu do budoucna.</p>
         </div>
         <div class="faq-item">
           <h3>Jaké platformy podporujete?</h3>
-          <p>Aktuálně cílíme na PC (Windows, Linux) a zvažujeme i konzolové verze.</p>
+          <p>Aktuálně cílím na PC (Windows, Linux) a zvažuji i konzolové verze.</p>
         </div>
       </div>
     </section>
@@ -215,9 +189,8 @@
     <section id="contact" class="fade-in">
       <div class="section-content">
         <h2>Kontakt</h2>
-        <p>Chceš se nás na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš nám!</p>
+        <p>Chceš se mě na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš mi!</p>
         <form>
-          <!-- Doplněno id/name pro lepší autofill -->
           <input type="text" id="name" name="name" placeholder="Jméno" required aria-label="Jméno" />
           <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email" />
           <textarea id="message" name="message" placeholder="Zpráva" rows="5" required aria-label="Zpráva"></textarea>
@@ -231,6 +204,11 @@
   <footer role="contentinfo">
     <p>&copy; 2025 Dark7 Studio. Všechna práva vyhrazena.</p>
   </footer>
+
+  <!-- Progress Slider -->
+  <div id="progressSlider">
+    <div id="progressBar"></div>
+  </div>
 
   <!-- Scroll To Top Button -->
   <button id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>

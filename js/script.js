@@ -1,7 +1,6 @@
 // ===== Preloader =====
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
-  // Zpoždění, aby byl vidět loader, poté skryjeme
   setTimeout(() => {
     preloader.style.animation = 'fadeOut 0.5s forwards';
     setTimeout(() => {
@@ -9,7 +8,6 @@ window.addEventListener('load', () => {
     }, 500);
   }, 800);
 
-  // Spustíme GSAP animace po načtení stránky
   initGsapAnimations();
 });
 
@@ -23,7 +21,6 @@ document.addEventListener('mousemove', (e) => {
 // ===== Hamburger Menu Toggle =====
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
-
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('show');
@@ -42,7 +39,7 @@ function scrollToSection(sectionId) {
 // ===== GSAP a ScrollTrigger Animace =====
 function initGsapAnimations() {
   gsap.registerPlugin(ScrollTrigger);
-
+  
   // Hero animace (sekvenční)
   const heroTl = gsap.timeline();
   heroTl.from("#home h1 .line", {
@@ -64,7 +61,7 @@ function initGsapAnimations() {
     ease: "power2.out",
   }, "-=0.4");
 
-  // Fade-in sekce s ScrollTrigger
+  // Animace pro sekce s ScrollTrigger
   const sections = document.querySelectorAll('section.fade-in');
   sections.forEach(sec => {
     gsap.from(sec, {
@@ -90,7 +87,6 @@ window.addEventListener('scroll', () => {
     scrollTopBtn.classList.remove('visible');
   }
 });
-
 scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
@@ -105,23 +101,29 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ===== Tilt Effect (vanilkové řešení) =====
+// ===== Tilt Effect =====
 const tiltElements = document.querySelectorAll('.tilt');
 tiltElements.forEach((el) => {
   el.addEventListener('mousemove', (e) => {
     const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left; 
-    const y = e.clientY - rect.top;  
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     const width = rect.width;
     const height = rect.height;
-    
-    const rotateX = (y - height / 2) / 10; 
+    const rotateX = (y - height / 2) / 10;
     const rotateY = (x - width / 2) / 10;
-
     el.style.transform = `perspective(600px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
-
   el.addEventListener('mouseleave', () => {
     el.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
   });
+});
+
+// ===== Progress Slider =====
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  progressBar.style.width = progress + '%';
 });
