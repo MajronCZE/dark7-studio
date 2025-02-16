@@ -89,12 +89,11 @@ header {
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
-  padding: 15px 20px;
+  padding: 5px 10px; /* Reduced padding pro lepší zarovnání k okrajům */
 }
 
 .nav-container {
   width: 100%;
-  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -255,12 +254,11 @@ section { padding: 100px 20px; min-height: 100vh; }
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  height: 0;
+  padding-bottom: 66.66%; /* Udržení poměru stran (3:2) */
 }
-.project-item.flipped {
-  transform: rotateY(180deg) scale(1.1);
-}
-.project-item .front,
-.project-item .back {
+.project-item > .front,
+.project-item > .back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -277,6 +275,10 @@ section { padding: 100px 20px; min-height: 100vh; }
   background: var(--bg-color-light);
   padding: 15px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  overflow: auto;
+}
+.project-item.flipped {
+  transform: rotateY(180deg) scale(1.1);
 }
 
 /* Project Info */
@@ -415,6 +417,22 @@ footer {
   background: rgba(26,26,26,0.95);
   border-top: 1px solid rgba(255,255,255,0.1);
   font-size: 0.9em;
+}
+
+/**************************************************************
+  Active Section Name Display
+**************************************************************/
+.active-section-name {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 1001;
+  font-size: 1em;
 }
 
 /**************************************************************

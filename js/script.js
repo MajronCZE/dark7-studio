@@ -89,7 +89,7 @@ scrollTopBtn.addEventListener('click', () => {
 // ===== Header shrink on scroll =====
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-  header.style.padding = window.pageYOffset > 50 ? '10px 20px' : '15px 20px';
+  header.style.padding = window.pageYOffset > 50 ? '5px 10px' : '5px 10px';
 });
 
 // ===== Tilt Effect =====
@@ -129,6 +129,7 @@ function changeSlide(btn, direction) {
 // ===== Segmented Progress Slider =====
 function initProgressObserver() {
   const progressSegments = document.querySelectorAll('#progressSlider .progress-segment');
+  const activeSectionName = document.getElementById("activeSectionName");
   
   // Kliknutí na segment = scroll do sekce
   progressSegments.forEach(segment => {
@@ -146,6 +147,9 @@ function initProgressObserver() {
         progressSegments.forEach(segment => {
           if (segment.getAttribute('data-target') === id) {
             segment.classList.add('active');
+            if (activeSectionName) {
+              activeSectionName.innerText = segment.innerText;
+            }
           } else {
             segment.classList.remove('active');
           }
