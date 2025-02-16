@@ -3,11 +3,8 @@ window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   setTimeout(() => {
     preloader.style.animation = 'fadeOut 0.5s forwards';
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 500);
+    setTimeout(() => { preloader.style.display = 'none'; }, 500);
   }, 800);
-
   initGsapAnimations();
 });
 
@@ -31,9 +28,7 @@ hamburger.addEventListener('click', () => {
 // ===== Smooth Scroll =====
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
+  if (section) { section.scrollIntoView({ behavior: 'smooth' }); }
 }
 
 // ===== GSAP a ScrollTrigger Animace =====
@@ -48,7 +43,8 @@ function initGsapAnimations() {
     duration: 0.8,
     ease: "power2.out",
     stagger: 0.2,
-  }).from("#home p", {
+  })
+  .from("#home p", {
     y: 30,
     opacity: 0,
     duration: 0.8,
@@ -94,11 +90,7 @@ scrollTopBtn.addEventListener('click', () => {
 // ===== Header shrink on scroll =====
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 50) {
-    header.style.padding = '10px 20px';
-  } else {
-    header.style.padding = '15px 20px';
-  }
+  header.style.padding = window.pageYOffset > 50 ? '10px 20px' : '15px 20px';
 });
 
 // ===== Tilt Effect =====
@@ -108,10 +100,8 @@ tiltElements.forEach((el) => {
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const width = rect.width;
-    const height = rect.height;
-    const rotateX = (y - height / 2) / 10;
-    const rotateY = (x - width / 2) / 10;
+    const rotateX = (y - rect.height / 2) / 10;
+    const rotateY = (x - rect.width / 2) / 10;
     el.style.transform = `perspective(600px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
   el.addEventListener('mouseleave', () => {

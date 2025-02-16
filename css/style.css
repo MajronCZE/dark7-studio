@@ -22,7 +22,7 @@
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-color);
+  background: linear-gradient(135deg, #1a1a1a, #0e0e0e); /* více odstínů černé/šedé */
   color: var(--text-color);
   line-height: 1.6;
   scroll-behavior: smooth;
@@ -84,7 +84,7 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  background: rgba(26, 26, 26, 0.9);
+  background: rgba(26, 26, 26, 0.95);
   backdrop-filter: blur(5px);
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
@@ -111,9 +111,7 @@ nav ul {
   display: flex;
 }
 
-nav ul li {
-  margin-left: 20px;
-}
+nav ul li { margin-left: 20px; }
 
 nav ul li a {
   text-decoration: none;
@@ -144,15 +142,9 @@ nav ul li a:hover {
   transition: all 0.3s ease;
 }
 
-.hamburger.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Responsivní navigace */
 @media (max-width: 768px) {
@@ -173,10 +165,7 @@ nav ul li a:hover {
 /**************************************************************
   Sekce
 **************************************************************/
-section {
-  padding: 100px 20px;
-  min-height: 100vh;
-}
+section { padding: 100px 20px; min-height: 100vh; }
 
 .section-content {
   max-width: 1000px;
@@ -192,7 +181,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-color-light) 100%);
+  background: linear-gradient(135deg, var(--bg-color), #0e0e0e);
   overflow: hidden;
 }
 
@@ -222,19 +211,11 @@ section {
   line-height: 1.2;
 }
 
-.hero-content h1 .line {
-  display: block;
-}
+.hero-content h1 .line { display: block; }
 
-.hero-content .neon {
-  color: var(--accent-color);
-  font-weight: 800;
-}
+.hero-content .neon { color: var(--accent-color); font-weight: 800; }
 
-.hero-content p {
-  font-size: 1.2em;
-  margin-bottom: 40px;
-}
+.hero-content p { font-size: 1.2em; margin-bottom: 40px; }
 
 /* Zaoblená tlačítka */
 .btn {
@@ -242,21 +223,18 @@ section {
   color: var(--bg-color);
   padding: 15px 30px;
   border: none;
-  border-radius: 25px;  /* Zvýšená zaoblenost */
+  border-radius: 30px;
   font-size: 1em;
   cursor: pointer;
   transition: transform 0.3s, background-color 0.3s;
 }
 
-.btn:hover {
-  background-color: var(--accent-hover);
-  transform: scale(1.05);
-}
+.btn:hover { background-color: var(--accent-hover); transform: scale(1.05); }
 
 .btn-small {
   padding: 10px 20px;
   font-size: 0.9em;
-  border-radius: 25px;
+  border-radius: 30px;
 }
 
 /**************************************************************
@@ -276,25 +254,21 @@ section {
 
 .project-item {
   background: var(--bg-color-light);
-  border-radius: 15px; /* Zaoblené dlaždice */
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   transition: transform 0.3s;
 }
 
-.project-item:hover {
-  transform: translateY(-5px);
-}
+.project-item:hover { transform: translateY(-5px); }
 
 .project-item img {
   width: 100%;
   display: block;
-  border-radius: 15px 15px 0 0; /* Horní část obrázku zaoblená */
+  border-radius: 20px 20px 0 0;
 }
 
-.project-info {
-  padding: 15px;
-}
+.project-info { padding: 15px; }
 
 .project-info h3 {
   margin-bottom: 10px;
@@ -314,15 +288,10 @@ section {
 .profile-pic {
   width: 200px;
   height: 200px;
-  border-radius: 50%; /* Kulatá profilovka */
+  border-radius: 50%;
   border: 4px solid var(--accent-color);
   object-fit: cover;
   margin-bottom: 20px;
-}
-
-.profile-info h3 {
-  margin-bottom: 10px;
-  color: var(--accent-color);
 }
 
 /**************************************************************
@@ -339,13 +308,11 @@ section {
 .blog-post {
   background: var(--bg-color-light);
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 20px;
   transition: transform 0.3s;
 }
 
-.blog-post:hover {
-  transform: translateY(-5px);
-}
+.blog-post:hover { transform: translateY(-5px); }
 
 .news-list {
   text-align: left;
@@ -357,7 +324,7 @@ section {
   background: var(--bg-color-light);
   padding: 15px;
   margin: 20px 0;
-  border-radius: 15px;
+  border-radius: 20px;
   text-align: left;
 }
 
@@ -376,7 +343,7 @@ section {
 #contact textarea {
   padding: 10px;
   border: none;
-  border-radius: 15px;
+  border-radius: 20px;
   font-size: 1em;
 }
 
@@ -400,9 +367,9 @@ footer {
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  height: 6px;
+  height: 8px;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
+  border-radius: 4px;
   z-index: 1001;
 }
 
@@ -410,7 +377,7 @@ footer {
   height: 100%;
   width: 0%;
   background: var(--accent-color);
-  border-radius: 3px;
+  border-radius: 4px;
   transition: width 0.2s ease-out;
 }
 
@@ -424,7 +391,7 @@ footer {
   background-color: var(--accent-color);
   color: var(--bg-color);
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   width: 50px;
   height: 50px;
   display: flex;
@@ -445,9 +412,9 @@ footer {
 /**************************************************************
   Animace
 **************************************************************/
-/* Zachováme GSAP animace, ale odstraňujeme defaultní opacity z fade-in,
-   aby se obsah vždy zobrazil i bez GSAP (můžeš si to později doladit) */
-.fade-in { /* opacity: 0; */ }
+.fade-in {
+  /* pro účely testu fade-in je ponecháno bez defaultního opacity: 0 */
+}
 
 .visible {
   opacity: 1;
@@ -455,14 +422,8 @@ footer {
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /**************************************************************
@@ -476,8 +437,5 @@ footer {
   Keyframes pro Preloader
 **************************************************************/
 @keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+  to { opacity: 0; visibility: hidden; }
 }
