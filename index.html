@@ -84,32 +84,54 @@
     <section id="projects" class="fade-in">
       <div class="section-content">
         <h2>Naše projekty</h2>
-        <p>Velké klikací dlaždice – klikni na dlaždici pro detail projektu.</p>
+        <p>Klikni na dlaždici pro zobrazení detailů a galerie.</p>
         <div class="project-grid">
-          <a href="project1.html" class="project-tile">
-            <div class="project-item">
-              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
-              <div class="project-info">
+          <!-- Projekt 1 -->
+          <div class="project-tile" onclick="flipCard(this)">
+            <div class="card">
+              <div class="card-front">
+                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Projekt 1" loading="lazy" />
                 <h3>Projekt 1</h3>
               </div>
+              <div class="card-back">
+                <div class="project-details">
+                  <p>Detailní popis projektu 1. Zde najdeš informace, koncept a technologie, které jsme použili.</p>
+                  <div class="gallery-slider">
+                    <button class="slider-prev" onclick="prevSlide(event, this)">&#10094;</button>
+                    <div class="slider-wrapper">
+                      <img class="slider-image" src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Proj1+Img1" alt="Projekt 1 - Obrázek 1" />
+                      <img class="slider-image" src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Proj1+Img2" alt="Projekt 1 - Obrázek 2" />
+                      <img class="slider-image" src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Proj1+Img3" alt="Projekt 1 - Obrázek 3" />
+                    </div>
+                    <button class="slider-next" onclick="nextSlide(event, this)">&#10095;</button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </a>
-          <a href="project2.html" class="project-tile">
-            <div class="project-item">
-              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
-              <div class="project-info">
+          </div>
+          <!-- Podobně přidej další dlaždice pro projekt 2, 3... -->
+          <div class="project-tile" onclick="flipCard(this)">
+            <div class="card">
+              <div class="card-front">
+                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Projekt 2" loading="lazy" />
                 <h3>Projekt 2</h3>
               </div>
-            </div>
-          </a>
-          <a href="project3.html" class="project-tile">
-            <div class="project-item">
-              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
-              <div class="project-info">
-                <h3>Projekt 3</h3>
+              <div class="card-back">
+                <div class="project-details">
+                  <p>Detailní popis projektu 2. Zde najdeš informace o konceptu a technologiích.</p>
+                  <div class="gallery-slider">
+                    <button class="slider-prev" onclick="prevSlide(event, this)">&#10094;</button>
+                    <div class="slider-wrapper">
+                      <img class="slider-image" src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Proj2+Img1" alt="Projekt 2 - Obrázek 1" />
+                      <img class="slider-image" src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Proj2+Img2" alt="Projekt 2 - Obrázek 2" />
+                    </div>
+                    <button class="slider-next" onclick="nextSlide(event, this)">&#10095;</button>
+                  </div>
+                </div>
               </div>
             </div>
-          </a>
+          </div>
+          <!-- Další dlaždice lze přidat obdobným způsobem -->
         </div>
       </div>
     </section>
@@ -133,21 +155,21 @@
     <section id="blog" class="fade-in">
       <div class="section-content">
         <h2>Blog</h2>
-        <p>Přečti si naše postřehy z vývoje, novinky ze světa her a inspirace.</p>
+        <p>Přečti si naše postřehy z vývoje, novinky a inspirace.</p>
         <div class="blog-grid">
           <article class="blog-post">
             <h3>Jak vzniká atmosféra hororu?</h3>
-            <p>Krátký úryvek článku o tom, jak tvoříme hutnou atmosféru...</p>
+            <p>Krátký úryvek článku o tvorbě atmosféry...</p>
             <a href="#" class="btn btn-small">Číst více</a>
           </article>
           <article class="blog-post">
             <h3>Nejlepší hororové hry poslední dekády</h3>
-            <p>Seznam našich oblíbených titulů, které nás inspirovaly...</p>
+            <p>Seznam inspirativních titulů...</p>
             <a href="#" class="btn btn-small">Číst více</a>
           </article>
           <article class="blog-post">
             <h3>DevLog #1: Začínáme</h3>
-            <p>První vývojářský deník – co máme v plánu, jak postupujeme...</p>
+            <p>První deník z vývoje...</p>
             <a href="#" class="btn btn-small">Číst více</a>
           </article>
         </div>
@@ -159,9 +181,9 @@
       <div class="section-content">
         <h2>Novinky</h2>
         <ul class="news-list">
-          <li><strong>20. 2. 2025:</strong> Zahájení uzavřené bety naší nejnovější hry.</li>
+          <li><strong>20. 2. 2025:</strong> Zahájení uzavřené bety.</li>
           <li><strong>15. 3. 2025:</strong> Rozšíření týmu o 2 nové členy.</li>
-          <li><strong>1. 4. 2025:</strong> Dark7 Studio se účastní herního veletrhu HorrorCon.</li>
+          <li><strong>1. 4. 2025:</strong> Účast na HorrorCon.</li>
         </ul>
       </div>
     </section>
@@ -171,16 +193,16 @@
       <div class="section-content">
         <h2>FAQ</h2>
         <div class="faq-item">
-          <h3>Jak nás kontaktovat ohledně spolupráce?</h3>
-          <p>Stačí mi napsat přes formulář dole nebo na e-mail.</p>
+          <h3>Jak se se mnou spojit?</h3>
+          <p>Napiš mi přes formulář nebo na e-mail.</p>
         </div>
         <div class="faq-item">
-          <h3>Máte i singleplayer / multiplayer tituly?</h3>
-          <p>Momentálně se zaměřuji na singleplayerové horory, ale multiplayer mám v plánu do budoucna.</p>
+          <h3>Singleplayer nebo multiplayer?</h3>
+          <p>Zaměřuji se na singleplayerové horory; multiplayer bude později.</p>
         </div>
         <div class="faq-item">
-          <h3>Jaké platformy podporujete?</h3>
-          <p>Cílím na PC (Windows, Linux) a zvažuji i konzolové verze.</p>
+          <h3>Podporované platformy?</h3>
+          <p>Cílím na PC, zvažuji i konzolové verze.</p>
         </div>
       </div>
     </section>
@@ -189,7 +211,7 @@
     <section id="contact" class="fade-in">
       <div class="section-content">
         <h2>Kontakt</h2>
-        <p>Chceš se mě na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš mi!</p>
+        <p>Chceš se mě na něco zeptat? Napiš mi!</p>
         <form>
           <input type="text" id="name" name="name" placeholder="Jméno" required aria-label="Jméno" />
           <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email" />
@@ -205,9 +227,20 @@
     <p>&copy; 2025 Dark7 Studio. Všechna práva vyhrazena.</p>
   </footer>
 
-  <!-- Progress Slider -->
-  <div id="progressSlider">
-    <div id="progressBar"></div>
+  <!-- Progress Slider a segmenty -->
+  <div id="progressContainer">
+    <div id="progressSlider">
+      <div id="progressBar"></div>
+    </div>
+    <div id="progressSegments">
+      <div class="progress-segment" data-section="home">Domů</div>
+      <div class="progress-segment" data-section="projects">Projekty</div>
+      <div class="progress-segment" data-section="team">Náš tým</div>
+      <div class="progress-segment" data-section="blog">Blog</div>
+      <div class="progress-segment" data-section="news">Novinky</div>
+      <div class="progress-segment" data-section="faq">FAQ</div>
+      <div class="progress-segment" data-section="contact">Kontakt</div>
+    </div>
   </div>
 
   <!-- Scroll To Top Button -->
