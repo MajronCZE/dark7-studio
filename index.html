@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dark7 Studio</title>
-  <meta name="description" content="Dark7 Studio – Indie herní vývojářské studio se zaměřením na moderní design, portfolio projektů a kontakty.">
-  <meta name="keywords" content="Dark7 Studio, indie, herní vývoj, portfolio, herní studio">
+  
+  <!-- SEO a sociální sítě -->
+  <meta name="description" content="Dark7 Studio – Moderní indie herní vývoj s důrazem na hororovou atmosféru a nezapomenutelné zážitky.">
+  <meta name="keywords" content="Dark7 Studio, herní studio, indie vývoj, hororové hry, portfolio, moderní design">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Dark7 Studio">
-  <meta property="og:description" content="Indie herní studio se zaměřením na moderní design a inovativní projekty.">
+  <meta property="og:description" content="Moderní indie herní studio se zaměřením na hororové tituly a inovativní herní zážitky.">
   <meta property="og:image" content="assets/images/hero.jpg">
   <meta property="og:url" content="https://tvuj-uzivatelsky-ucet.github.io/nazev-repozitare/">
   <meta property="og:type" content="website">
@@ -17,18 +19,29 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dark7 Studio">
-  <meta name="twitter:description" content="Indie herní studio se zaměřením na moderní design a inovativní projekty.">
+  <meta name="twitter:description" content="Moderní indie herní studio se zaměřením na hororové tituly a inovativní herní zážitky.">
   <meta name="twitter:image" content="assets/images/hero.jpg">
-  
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap"
+    rel="stylesheet"
+  />
   
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Hlavní CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div id="cursor"></div>
+
   <!-- Header -->
   <header id="header">
     <div class="nav-container">
@@ -41,77 +54,98 @@
         </div>
         <ul id="nav-menu">
           <li><a href="#home">Domů</a></li>
-          <li><a href="#about">O studiu</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#projects">Projekty</a></li>
+          <li><a href="#about">O nás</a></li>
           <li><a href="#contact">Kontakt</a></li>
-          <!-- Další položky dle potřeby -->
         </ul>
       </nav>
     </div>
   </header>
   
-  <!-- Hero Section -->
-  <section id="home">
+  <!-- Hero sekce -->
+  <section id="home" class="section-hero">
     <div class="hero-content">
-      <h1 class="fade-in">Vítejte v Dark7 Studio</h1>
-      <p class="fade-in">Indie herní studio se zaměřením na moderní design, inovativní projekty a skvělý herní zážitek.</p>
-      <button class="btn fade-in" onclick="scrollToSection('about')">Zjistit více</button>
+      <h1 class="fade-in">
+        <span class="line">We Create</span>
+        <span class="line neon">Horror Experiences</span>
+      </h1>
+      <p class="fade-in" style="animation-delay: 0.3s;">
+        Vítej v Dark7 Studio, moderním indie herním studiu, které se zaměřuje na
+        temnou atmosféru, napětí a inovativní hororové projekty.
+      </p>
+      <button class="btn fade-in" style="animation-delay: 0.6s;" onclick="scrollToSection('projects')">
+        Prohlédnout projekty
+      </button>
     </div>
   </section>
-  
-  <!-- About Section -->
-  <section id="about">
-    <div class="section-content fade-in">
-      <h2>O studiu</h2>
-      <p>Dark7 Studio je moderní indie tým zaměřený na vývoj inovativních her. I když jsme na začátku, máme velké ambice tvořit tituly, které osloví široké publikum.</p>
-    </div>
-  </section>
-  
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="section-content fade-in">
-      <h2>Portfolio</h2>
-      <p>Zde najdete ukázky našich projektů a prací.</p>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <h3>Název projektu</h3>
-          <p>Krátký popis projektu.</p>
+
+  <!-- Projekty (Portfolio) -->
+  <section id="projects" class="fade-in">
+    <div class="section-content">
+      <h2>Naše projekty</h2>
+      <p>Mrkni na ukázky naší práce. Každý projekt je zhmotněním našich nočních můr a kreativity.</p>
+      <div class="project-grid">
+        <div class="project-item tilt">
+          <img src="assets/images/tilt1.jpg" alt="Projekt 1" />
+          <div class="project-info">
+            <h3>Projekt 1</h3>
+            <p>Krátký popis atmosférického hororu.</p>
+          </div>
         </div>
-        <div class="portfolio-item">
-          <h3>Název projektu</h3>
-          <p>Krátký popis projektu.</p>
+        <div class="project-item tilt">
+          <img src="assets/images/tilt2.jpg" alt="Projekt 2" />
+          <div class="project-info">
+            <h3>Projekt 2</h3>
+            <p>Experimentální thriller s důrazem na psychologii.</p>
+          </div>
         </div>
-        <div class="portfolio-item">
-          <h3>Název projektu</h3>
-          <p>Krátký popis projektu.</p>
+        <div class="project-item tilt">
+          <img src="assets/images/tilt3.jpg" alt="Projekt 3" />
+          <div class="project-info">
+            <h3>Projekt 3</h3>
+            <p>Akční horor s temným příběhem a znepokojivou atmosférou.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="section-content fade-in">
+
+  <!-- O nás -->
+  <section id="about" class="fade-in">
+    <div class="section-content">
+      <h2>O nás</h2>
+      <p>
+        Jsme malý tým nadšenců do hororového žánru. Naším cílem je přinášet
+        hráčům jedinečné, napínavé a mrazivé zážitky. Baví nás experimentovat
+        s designem, atmosférou i příběhem, abychom vytvořili nezapomenutelné
+        tituly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="contact" class="fade-in">
+    <div class="section-content">
       <h2>Kontakt</h2>
-      <p>Máte zájem o spolupráci nebo dotazy? Napište nám!</p>
-      <form id="contactForm">
-        <input type="text" placeholder="Jméno" required>
-        <input type="email" placeholder="Email" required>
+      <p>Chceš se nás na něco zeptat, navázat spolupráci nebo se přidat do týmu? Napiš nám!</p>
+      <form>
+        <input type="text" placeholder="Jméno" required />
+        <input type="email" placeholder="Email" required />
         <textarea placeholder="Zpráva" rows="5" required></textarea>
         <button type="submit" class="btn">Odeslat</button>
       </form>
     </div>
   </section>
-  
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Dark7 Studio. Všechna práva vyhrazena.</p>
   </footer>
-  
+
   <!-- Scroll To Top Button -->
   <button id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
-  
-  <!-- JS -->
+
+  <!-- JavaScript -->
   <script src="js/script.js"></script>
 </body>
 </html>
