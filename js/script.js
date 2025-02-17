@@ -109,58 +109,74 @@ tiltElements.forEach((el) => {
   });
 });
 
-// ===== Progress Slider and Section Button =====
-const progressBar = document.getElementById('progressBar');
+// ===== Segmented Progress Slider and Section Buttons =====
+const sectionsOrder = [
+  { id: 'home', name: 'Domů' },
+  { id: 'projects', name: 'Projekty' },
+  { id: 'team', name: 'Náš tým' },
+  { id: 'blog', name: 'Blog' },
+  { id: 'news', name: 'Novinky' },
+  { id: 'faq', name: 'FAQ' },
+  { id: 'contact', name: 'Kontakt' }
+];
 
-// Create progress button dynamically and append to progressSlider
-window.addEventListener('DOMContentLoaded', () => {
+function createProgressSegments() {
   const progressSlider = document.getElementById('progressSlider');
-  let progressButton = document.getElementById('progressButton');
-  if (!progressButton) {
-    progressButton = document.createElement('button');
-    progressButton.id = 'progressButton';
-    progressButton.className = 'progress-button';
-    progressSlider.appendChild(progressButton);
-  }
+  progressSlider.innerHTML = ''; // Clear existing content
+  sectionsOrder.forEach(section => {
+    // Create segment container
+    const segment = document.createElement('div');
+    segment.className = 'progress-segment';
+    segment.dataset.sectionId = section.id;
+    
+    // Create navigation button
+    const button = document.createElement('button');
+    button.className = 'progress-button';
+    button.textContent = section.name;
+    button.onclick = () => {
+      scrollToSection(section.id);
+    };
+
+    // Create fill bar element
+    const fill = document.createElement('div');
+    fill.className = 'segment-fill';
+
+    segment.appendChild(button);
+    segment.appendChild(fill);
+    progressSlider.appendChild(segment);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  createProgressSegments();
 });
 
-// Combine progress bar update and section button functionality in one scroll event listener
 window.addEventListener('scroll', () => {
-  // Update progress bar width
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = (scrollTop / scrollHeight) * 100;
-  progressBar.style.width = progress + '%';
-
-  // Determine active section based on viewport's bottom (where the progress bar is)
-  const sections = document.querySelectorAll('section.fade-in');
-  let activeSection = null;
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    // If the bottom of the viewport is within the section's bounds...
-    if (rect.top <= window.innerHeight && rect.bottom >= window.innerHeight) {
-      activeSection = section;
+  // Update each segment based on whether its section has been reached
+  sectionsOrder.forEach((section, index) => {
+    const sectionEl = document.getElementById(section.id);
+    if (sectionEl) {
+      // Consider the section "reached" if the scroll is past its offsetTop minus half the viewport height
+      const triggerPoint = sectionEl.offsetTop - window.innerHeight / 2;
+      const segment = document.querySelector(`.progress-segment[data-section-id="${section.id}"]`);
+      if (scrollTop >= triggerPoint) {
+        segment.classList.add('filled');
+        // Determine active segment (current section) by comparing with next section's trigger point
+        let nextTrigger = Infinity;
+        if (index < sectionsOrder.length - 1) {
+          const nextSectionEl = document.getElementById(sectionsOrder[index + 1].id);
+          nextTrigger = nextSectionEl.offsetTop - window.innerHeight / 2;
+        }
+        if (scrollTop < nextTrigger) {
+          segment.classList.add('active');
+        } else {
+          segment.classList.remove('active');
+        }
+      } else {
+        segment.classList.remove('filled');
+        segment.classList.remove('active');
+      }
     }
   });
-
-  const progressButton = document.getElementById('progressButton');
-  if (activeSection) {
-    const sectionId = activeSection.id;
-    const sectionNames = {
-      'home': 'Domů',
-      'projects': 'Projekty',
-      'team': 'Náš tým',
-      'blog': 'Blog',
-      'news': 'Novinky',
-      'faq': 'FAQ',
-      'contact': 'Kontakt'
-    };
-    progressButton.textContent = sectionNames[sectionId] || sectionId;
-    progressButton.classList.add('visible');
-    progressButton.onclick = () => {
-      activeSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  } else {
-    progressButton.classList.remove('visible');
-  }
 });

@@ -359,7 +359,7 @@ footer {
 }
 
 /**************************************************************
-  Progress Slider
+  Segmented Progress Slider and Section Buttons
 **************************************************************/
 #progressSlider {
   position: fixed;
@@ -367,99 +367,62 @@ footer {
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   z-index: 1001;
 }
 
-#progressBar {
-  height: 100%;
-  width: 0%;
-  background: var(--accent-color);
-  border-radius: 4px;
-  transition: width 0.2s ease-out;
+.progress-segment {
+  flex: 1;
+  margin: 0 2px;
+  text-align: center;
+  position: relative;
 }
 
-/**************************************************************
-  Scroll To Top Button
-**************************************************************/
-#scrollTopBtn {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  background-color: var(--accent-color);
-  color: var(--bg-color);
-  border: none;
-  border-radius: 30px;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s;
-  z-index: 1000;
-}
-
-#scrollTopBtn.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/**************************************************************
-  Animace
-**************************************************************/
-.fade-in {
-  /* pro účely testu fade-in je ponecháno bez defaultního opacity: 0 */
-}
-
-.visible {
-  opacity: 1;
-  transition: opacity var(--transition-speed) ease;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/**************************************************************
-  Responsivní úpravy
-**************************************************************/
-@media (max-width: 768px) {
-  .hero-content h1 { font-size: 2.5em; }
-}
-
-/**************************************************************
-  Keyframes pro Preloader
-**************************************************************/
-@keyframes fadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
-
-/**************************************************************
-  Progress Button on Progress Slider
-**************************************************************/
-.progress-button {
-  position: absolute;
-  top: -40px; /* Adjust as needed */
-  left: 50%;
-  transform: translateX(-50%);
+.progress-segment .progress-button {
   background: var(--accent-color);
   color: var(--bg-color);
-  padding: 5px 15px;
+  padding: 5px 10px;
   border: none;
   border-radius: 20px;
-  font-size: 0.9em;
+  font-size: 0.8em;
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s ease;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 
-.progress-button.visible {
+/* Show the button if segment is filled or active */
+.progress-segment.filled .progress-button,
+.progress-segment.active .progress-button {
   opacity: 1;
-  pointer-events: auto;
+}
+
+.segment-fill {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.segment-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.progress-segment.filled .segment-fill::after {
+  width: 100%;
+}
+
+.progress-segment.active .segment-fill::after {
+  background: var(--accent-hover);
 }
