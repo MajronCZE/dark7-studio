@@ -86,30 +86,51 @@
         <h2>Naše projekty</h2>
         <p>Velké klikací dlaždice – klikni na dlaždici pro detail projektu.</p>
         <div class="project-grid">
-          <a href="project1.html" class="project-tile">
-            <div class="project-item">
-              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
-              <div class="project-info">
-                <h3>Projekt 1</h3>
+          <div class="project-tile flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
+                <div class="project-info">
+                  <h3>Projekt 1</h3>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <h3>Projekt 1 Detail</h3>
+                <p>Tady je detailní popis projektu 1. Všechny informace o projektu se zde zobrazí.</p>
+                <button class="close-flip">Zavřít</button>
               </div>
             </div>
-          </a>
-          <a href="project2.html" class="project-tile">
-            <div class="project-item">
-              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
-              <div class="project-info">
-                <h3>Projekt 2</h3>
+          </div>
+          <div class="project-tile flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
+                <div class="project-info">
+                  <h3>Projekt 2</h3>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <h3>Projekt 2 Detail</h3>
+                <p>Tady je detailní popis projektu 2. Všechny informace o projektu se zde zobrazí.</p>
+                <button class="close-flip">Zavřít</button>
               </div>
             </div>
-          </a>
-          <a href="project3.html" class="project-tile">
-            <div class="project-item">
-              <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
-              <div class="project-info">
-                <h3>Projekt 3</h3>
+          </div>
+          <div class="project-tile flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
+                <div class="project-info">
+                  <h3>Projekt 3</h3>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <h3>Projekt 3 Detail</h3>
+                <p>Tady je detailní popis projektu 3. Všechny informace o projektu se zde zobrazí.</p>
+                <button class="close-flip">Zavřít</button>
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -205,10 +226,8 @@
     <p>&copy; 2025 Dark7 Studio. Všechna práva vyhrazena.</p>
   </footer>
 
-  <!-- Progress Slider -->
-  <div id="progressSlider">
-    <div id="progressBar"></div>
-  </div>
+  <!-- Segmented Progress Slider -->
+  <div id="progressSlider"></div>
 
   <!-- Scroll To Top Button -->
   <button id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>

@@ -149,6 +149,28 @@ function createProgressSegments() {
 
 document.addEventListener('DOMContentLoaded', () => {
   createProgressSegments();
+
+  // ===== Flip Card Functionality for Project Tiles =====
+  document.querySelectorAll('.flip-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Prevent triggering when clicking the close button
+      if (e.target.classList.contains('close-flip')) return;
+      if (!card.classList.contains('active')) {
+        card.classList.add('active');
+        card.classList.add('flipped');
+      }
+    });
+  });
+  
+  // Add event to close button to revert the card back
+  document.querySelectorAll('.close-flip').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation(); // prevent the card's click event from firing
+      const card = this.closest('.flip-card');
+      card.classList.remove('flipped');
+      card.classList.remove('active');
+    });
+  });
 });
 
 window.addEventListener('scroll', () => {
