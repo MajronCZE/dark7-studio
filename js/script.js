@@ -150,31 +150,39 @@ function createProgressSegments() {
 document.addEventListener('DOMContentLoaded', () => {
   createProgressSegments();
 
-  // ===== Projekt-tile rozbalování =====
+  // ===== Projekt-tile rozbalování a sbalování =====
   document.querySelectorAll('.project-tile').forEach(tile => {
     tile.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // Pokud je dlaždice již rozbalená, zavřeme ji
       if(tile.classList.contains('expanded')){
-        gsap.to(tile, { duration: 0.5, scale: 1, x: 0, y: 0 });
+        // Sbalit – animace zpět a přepnutí obsahu
+        gsap.to(tile, { 
+          duration: 0.5, 
+          scale: 1, 
+          x: 0, 
+          y: 0, 
+          onComplete: () => {
+            tile.querySelector('.project-expanded').style.display = 'none';
+            tile.querySelector('.project-item').style.display = 'block';
+          }
+        });
         tile.classList.remove('expanded');
-        const detail = tile.querySelector('.project-detail');
-        if(detail) detail.style.display = 'none';
       } else {
-        // Získáme pozici dlaždice a spočítáme posun do středu
+        // Rozbalit – spočítat posun a animovat
         const rect = tile.getBoundingClientRect();
         const centerX = (window.innerWidth / 2) - (rect.width / 2) - rect.left;
         const centerY = (window.innerHeight / 2) - (rect.height / 2) - rect.top;
 
         gsap.to(tile, { 
           duration: 0.5, 
-          scale: 1.2, 
+          scale: 3.5, 
           x: centerX, 
           y: centerY, 
           onComplete: () => {
-            const detail = tile.querySelector('.project-detail');
-            if(detail) detail.style.display = 'block';
+            // Přepnout obsah: skrýt původní náhled a zobrazit rozbalený obsah
+            tile.querySelector('.project-item').style.display = 'none';
+            tile.querySelector('.project-expanded').style.display = 'flex';
           }
         });
         tile.classList.add('expanded');

@@ -249,10 +249,12 @@ section { padding: 100px 20px; min-height: 100vh; }
 
 .project-tile {
   cursor: pointer;
-  /* Přidáme pozici pro případné absolutní umístění detailu */
   position: relative;
+  /* Aby byla rozbalená dlaždice nad ostatními */
+  z-index: 1;
 }
 
+/* Původní malý náhled */
 .project-item {
   background: var(--bg-color-light);
   border-radius: 20px;
@@ -277,17 +279,39 @@ section { padding: 100px 20px; min-height: 100vh; }
   font-weight: 600;
 }
 
-/* Styl pro detailní informace – skryté a s přehledným pozadím */
-.project-detail {
+/* Rozbalená verze */
+.project-expanded {
   display: none;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  text-align: left;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  flex-direction: row;
+  background: var(--bg-color-light);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
-/* Když je dlaždice rozbalená */
+/* Levá část – slideshow */
+.project-slideshow {
+  flex: 1;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-slideshow img {
+  width: 100%;
+  height: auto;
+}
+
+/* Pravá část – detailní info */
+.project-details {
+  flex: 1;
+  padding: 20px;
+  color: var(--text-color);
+  background: #222;
+}
+
+/* Při rozbalení tile bude nad ostatními */
 .project-tile.expanded {
   z-index: 100;
 }
