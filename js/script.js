@@ -122,22 +122,17 @@ const sectionsOrder = [
 
 function createProgressSegments() {
   const progressSlider = document.getElementById('progressSlider');
-  progressSlider.innerHTML = ''; // Clear existing content
+  progressSlider.innerHTML = '';
   sectionsOrder.forEach(section => {
-    // Create segment container
     const segment = document.createElement('div');
     segment.className = 'progress-segment';
     segment.dataset.sectionId = section.id;
     
-    // Create navigation button (always visible)
     const button = document.createElement('button');
     button.className = 'progress-button';
     button.textContent = section.name;
-    button.onclick = () => {
-      scrollToSection(section.id);
-    };
+    button.onclick = () => { scrollToSection(section.id); };
 
-    // Create fill bar element
     const fill = document.createElement('div');
     fill.className = 'segment-fill';
 
@@ -150,44 +145,57 @@ function createProgressSegments() {
 document.addEventListener('DOMContentLoaded', () => {
   createProgressSegments();
 
-  // ===== Projekt-tile rozbalování a sbalování =====
+  // ===== Projekt Modal =====
+  const projectModal = document.getElementById('projectModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDetail = document.getElementById('modalDetail');
+  const modalSlideshow = document.querySelector('.modal-slideshow');
+
+  // Funkce pro otevření modalu s obsahem projektu
+  function openProjectModal(tile) {
+    const title = tile.dataset.title;
+    const detail = tile.dataset.detail;
+    const slides = tile.dataset.slides.split(',');
+
+    // Nastavit obsah modalu
+    modalTitle.textContent = title;
+    modalDetail.textContent = detail;
+
+    // Vyčistit a naplnit slideshow
+    modalSlideshow.innerHTML = '';
+    slides.forEach((slide, index) => {
+      const img = document.createElement('img');
+      img.src = slide.trim();
+      img.alt = `Slide ${index + 1}`;
+      if (index !== 0) img.style.display = 'none';
+      modalSlideshow.appendChild(img);
+    });
+
+    // Zobrazit modal s GSAP animací
+    projectModal.style.display = 'flex';
+    gsap.fromTo(projectModal, { opacity: 0 }, { duration: 0.3, opacity: 1 });
+  }
+
+  // Zavření modalu
+  function closeProjectModal() {
+    gsap.to(projectModal, { duration: 0.3, opacity: 0, onComplete: () => {
+      projectModal.style.display = 'none';
+    }});
+  }
+
+  // Přidat event listener na každý projekt-tile
   document.querySelectorAll('.project-tile').forEach(tile => {
     tile.addEventListener('click', (e) => {
       e.preventDefault();
-
-      if(tile.classList.contains('expanded')){
-        // Sbalit – animace zpět a přepnutí obsahu
-        gsap.to(tile, { 
-          duration: 0.5, 
-          scale: 1, 
-          x: 0, 
-          y: 0, 
-          onComplete: () => {
-            tile.querySelector('.project-expanded').style.display = 'none';
-            tile.querySelector('.project-item').style.display = 'block';
-          }
-        });
-        tile.classList.remove('expanded');
-      } else {
-        // Rozbalit – spočítat posun a animovat
-        const rect = tile.getBoundingClientRect();
-        const centerX = (window.innerWidth / 2) - (rect.width / 2) - rect.left;
-        const centerY = (window.innerHeight / 2) - (rect.height / 2) - rect.top;
-
-        gsap.to(tile, { 
-          duration: 0.5, 
-          scale: 3.5, 
-          x: centerX, 
-          y: centerY, 
-          onComplete: () => {
-            // Přepnout obsah: skrýt původní náhled a zobrazit rozbalený obsah
-            tile.querySelector('.project-item').style.display = 'none';
-            tile.querySelector('.project-expanded').style.display = 'flex';
-          }
-        });
-        tile.classList.add('expanded');
-      }
+      openProjectModal(tile);
     });
+  });
+
+  // Zavřít modal při kliknutí mimo obsah modalu
+  projectModal.addEventListener('click', (e) => {
+    if (e.target === projectModal) {
+      closeProjectModal();
+    }
   });
 });
 

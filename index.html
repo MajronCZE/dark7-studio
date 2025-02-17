@@ -87,63 +87,38 @@
         <p>Klikni na dlaždici pro detail projektu.</p>
         <div class="project-grid">
           <!-- Projekt 1 -->
-          <div class="project-tile" data-detail="Detailní informace o Projektu 1">
+          <div class="project-tile" 
+               data-title="Projekt 1" 
+               data-detail="Detailní informace o Projektu 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+               data-slides="https://dummyimage.com/400x300/000/fff&text=Slide+1,https://dummyimage.com/400x300/000/fff&text=Slide+2,https://dummyimage.com/400x300/000/fff&text=Slide+3">
             <div class="project-item">
               <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
               <div class="project-info">
                 <h3>Projekt 1</h3>
               </div>
             </div>
-            <!-- Expanded view (skryté) -->
-            <div class="project-expanded">
-              <div class="project-slideshow">
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+1" alt="Slide 1" />
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+2" alt="Slide 2" style="display:none;" />
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+3" alt="Slide 3" style="display:none;" />
-              </div>
-              <div class="project-details">
-                <h3>Projekt 1</h3>
-                <p>Detailní informace o Projektu 1...</p>
-              </div>
-            </div>
           </div>
           <!-- Projekt 2 -->
-          <div class="project-tile" data-detail="Detailní informace o Projektu 2">
+          <div class="project-tile" 
+               data-title="Projekt 2" 
+               data-detail="Detailní informace o Projektu 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+               data-slides="https://dummyimage.com/400x300/000/fff&text=Slide+1,https://dummyimage.com/400x300/000/fff&text=Slide+2,https://dummyimage.com/400x300/000/fff&text=Slide+3">
             <div class="project-item">
               <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
               <div class="project-info">
                 <h3>Projekt 2</h3>
               </div>
             </div>
-            <div class="project-expanded">
-              <div class="project-slideshow">
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+1" alt="Slide 1" />
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+2" alt="Slide 2" style="display:none;" />
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+3" alt="Slide 3" style="display:none;" />
-              </div>
-              <div class="project-details">
-                <h3>Projekt 2</h3>
-                <p>Detailní informace o Projektu 2...</p>
-              </div>
-            </div>
           </div>
           <!-- Projekt 3 -->
-          <div class="project-tile" data-detail="Detailní informace o Projektu 3">
+          <div class="project-tile" 
+               data-title="Projekt 3" 
+               data-detail="Detailní informace o Projektu 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+               data-slides="https://dummyimage.com/400x300/000/fff&text=Slide+1,https://dummyimage.com/400x300/000/fff&text=Slide+2,https://dummyimage.com/400x300/000/fff&text=Slide+3">
             <div class="project-item">
               <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
               <div class="project-info">
                 <h3>Projekt 3</h3>
-              </div>
-            </div>
-            <div class="project-expanded">
-              <div class="project-slideshow">
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+1" alt="Slide 1" />
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+2" alt="Slide 2" style="display:none;" />
-                <img src="https://dummyimage.com/400x300/000/fff&text=Slide+3" alt="Slide 3" style="display:none;" />
-              </div>
-              <div class="project-details">
-                <h3>Projekt 3</h3>
-                <p>Detailní informace o Projektu 3...</p>
               </div>
             </div>
           </div>
@@ -236,6 +211,21 @@
       </div>
     </section>
   </main>
+
+  <!-- Modal pro detail projektu -->
+  <div id="projectModal" class="project-modal">
+    <div class="modal-content">
+      <div class="modal-slideshow">
+        <!-- Obrázky budou generovány dynamicky -->
+      </div>
+      <div class="modal-details">
+        <h3 id="modalTitle"></h3>
+        <div id="modalDetail" class="modal-detail-content">
+          <!-- Detailní text (scrollovatelný) -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer (role="contentinfo") -->
   <footer role="contentinfo">
