@@ -296,7 +296,7 @@ section {
 }
 
 /**************************************************************
-  Modal pro projekt
+  Modal pro projekt – větší a se zaoblenými rohy
 **************************************************************/
 .project-modal {
   position: fixed;
@@ -315,10 +315,10 @@ section {
 .modal-content {
   background: #141414;
   display: flex;
-  width: 90%;
-  max-width: 1000px;
-  max-height: 90%;
-  border-radius: 10px;
+  width: 95%;
+  max-width: 1200px;
+  max-height: 95%;
+  border-radius: 20px;
   overflow: hidden;
   animation: fadeIn 0.3s ease-out;
 }
@@ -337,10 +337,52 @@ section {
   position: relative;
 }
 
+/* Obrázky v modal slideshow budou překrývat sebe a přechod bude řízen JS */
 .modal-slideshow img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-slideshow img.active {
+  opacity: 1;
+}
+
+/* Šipky pro ovládání slideshow */
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-size: 1.5em;
+  user-select: none;
+}
+
+.modal-arrow.left {
+  left: 10px;
+}
+
+.modal-arrow.right {
+  right: 10px;
+}
+
+.modal-arrow:hover {
+  background: rgba(0,0,0,0.8);
 }
 
 .modal-details {
@@ -349,6 +391,7 @@ section {
   background: #222;
   color: #fff;
   overflow-y: auto;
+  border-left: 1px solid #000;
 }
 
 /* Responsivní úprava modalu pro menší zařízení */
@@ -359,6 +402,9 @@ section {
   .modal-slideshow,
   .modal-details {
     width: 100%;
+  }
+  .modal-arrow {
+    display: none;
   }
 }
 
