@@ -109,11 +109,58 @@ tiltElements.forEach((el) => {
   });
 });
 
-// ===== Progress Slider =====
+// ===== Progress Slider and Section Button =====
 const progressBar = document.getElementById('progressBar');
+
+// Create progress button dynamically and append to progressSlider
+window.addEventListener('DOMContentLoaded', () => {
+  const progressSlider = document.getElementById('progressSlider');
+  let progressButton = document.getElementById('progressButton');
+  if (!progressButton) {
+    progressButton = document.createElement('button');
+    progressButton.id = 'progressButton';
+    progressButton.className = 'progress-button';
+    progressSlider.appendChild(progressButton);
+  }
+});
+
+// Combine progress bar update and section button functionality in one scroll event listener
 window.addEventListener('scroll', () => {
+  // Update progress bar width
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const progress = (scrollTop / scrollHeight) * 100;
   progressBar.style.width = progress + '%';
+
+  // Determine active section based on viewport's bottom (where the progress bar is)
+  const sections = document.querySelectorAll('section.fade-in');
+  let activeSection = null;
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    // If the bottom of the viewport is within the section's bounds...
+    if (rect.top <= window.innerHeight && rect.bottom >= window.innerHeight) {
+      activeSection = section;
+    }
+  });
+
+  const progressButton = document.getElementById('progressButton');
+  if (activeSection) {
+    const sectionId = activeSection.id;
+    const sectionNames = {
+      'home': 'Domů',
+      'projects': 'Projekty',
+      'team': 'Náš tým',
+      'blog': 'Blog',
+      'news': 'Novinky',
+      'faq': 'FAQ',
+      'contact': 'Kontakt'
+    };
+    progressButton.textContent = sectionNames[sectionId] || sectionId;
+    progressButton.classList.add('visible');
+    progressButton.onclick = () => {
+      activeSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  } else {
+    progressButton.classList.remove('visible');
+  }
 });

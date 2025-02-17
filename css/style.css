@@ -22,7 +22,7 @@
 
 body {
   font-family: var(--font-main);
-  background: linear-gradient(135deg, #1a1a1a, #0e0e0e); /* více odstínů černé/šedé */
+  background: linear-gradient(135deg, #1a1a1a, #0e0e0e);
   color: var(--text-color);
   line-height: 1.6;
   scroll-behavior: smooth;
@@ -201,7 +201,7 @@ section { padding: 100px 20px; min-height: 100vh; }
 
 .hero-content {
   max-width: 800px;
-  padding-top: 100px; /* kvůli fixnímu headeru */
+  padding-top: 100px;
   padding-bottom: 100px;
 }
 
@@ -438,4 +438,28 @@ footer {
 **************************************************************/
 @keyframes fadeOut {
   to { opacity: 0; visibility: hidden; }
+}
+
+/**************************************************************
+  Progress Button on Progress Slider
+**************************************************************/
+.progress-button {
+  position: absolute;
+  top: -40px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  color: var(--bg-color);
+  padding: 5px 15px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.progress-button.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
