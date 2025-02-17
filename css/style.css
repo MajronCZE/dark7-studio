@@ -247,6 +247,18 @@ section { padding: 100px 20px; min-height: 100vh; }
   margin-top: 40px;
 }
 
+/* Zachováváme původní styl .project-item */
+.project-item {
+  background: var(--bg-color-light);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.project-item:hover {
+  transform: translateY(-5px);
+}
+
 /**************************************************************
   Náš tým – profilovka
 **************************************************************/
