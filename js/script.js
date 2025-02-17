@@ -149,20 +149,49 @@ function createProgressSegments() {
 
 document.addEventListener('DOMContentLoaded', () => {
   createProgressSegments();
+
+  // ===== Projekt-tile rozbalování =====
+  document.querySelectorAll('.project-tile').forEach(tile => {
+    tile.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Pokud je dlaždice již rozbalená, zavřeme ji
+      if(tile.classList.contains('expanded')){
+        gsap.to(tile, { duration: 0.5, scale: 1, x: 0, y: 0 });
+        tile.classList.remove('expanded');
+        const detail = tile.querySelector('.project-detail');
+        if(detail) detail.style.display = 'none';
+      } else {
+        // Získáme pozici dlaždice a spočítáme posun do středu
+        const rect = tile.getBoundingClientRect();
+        const centerX = (window.innerWidth / 2) - (rect.width / 2) - rect.left;
+        const centerY = (window.innerHeight / 2) - (rect.height / 2) - rect.top;
+
+        gsap.to(tile, { 
+          duration: 0.5, 
+          scale: 1.2, 
+          x: centerX, 
+          y: centerY, 
+          onComplete: () => {
+            const detail = tile.querySelector('.project-detail');
+            if(detail) detail.style.display = 'block';
+          }
+        });
+        tile.classList.add('expanded');
+      }
+    });
+  });
 });
 
 window.addEventListener('scroll', () => {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  // Update each segment based on whether its section has been reached
   sectionsOrder.forEach((section, index) => {
     const sectionEl = document.getElementById(section.id);
     if (sectionEl) {
-      // Consider the section "reached" if the scroll is past its offsetTop minus half the viewport height
       const triggerPoint = sectionEl.offsetTop - window.innerHeight / 2;
       const segment = document.querySelector(`.progress-segment[data-section-id="${section.id}"]`);
       if (scrollTop >= triggerPoint) {
         segment.classList.add('filled');
-        // Determine active segment (current section) by comparing with next section's trigger point
         let nextTrigger = Infinity;
         if (index < sectionsOrder.length - 1) {
           const nextSectionEl = document.getElementById(sectionsOrder[index + 1].id);

@@ -248,8 +248,9 @@ section { padding: 100px 20px; min-height: 100vh; }
 }
 
 .project-tile {
-  text-decoration: none;
-  color: inherit;
+  cursor: pointer;
+  /* Přidáme pozici pro případné absolutní umístění detailu */
+  position: relative;
 }
 
 .project-item {
@@ -274,6 +275,21 @@ section { padding: 100px 20px; min-height: 100vh; }
   margin-bottom: 10px;
   color: var(--accent-color);
   font-weight: 600;
+}
+
+/* Styl pro detailní informace – skryté a s přehledným pozadím */
+.project-detail {
+  display: none;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Když je dlaždice rozbalená */
+.project-tile.expanded {
+  z-index: 100;
 }
 
 /**************************************************************
@@ -381,7 +397,7 @@ footer {
 }
 
 .progress-segment .progress-button {
-  background: #555; /* Default grey */
+  background: #555;
   color: var(--bg-color);
   padding: 5px 10px;
   border: none;
@@ -392,7 +408,6 @@ footer {
   cursor: pointer;
 }
 
-/* Turn green if the section is reached or active */
 .progress-segment.filled .progress-button,
 .progress-segment.active .progress-button {
   background: var(--accent-color);
