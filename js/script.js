@@ -28,7 +28,9 @@ hamburger.addEventListener('click', () => {
 // ===== Smooth Scroll =====
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
-  if (section) { section.scrollIntoView({ behavior: 'smooth' }); }
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 // ===== GSAP a ScrollTrigger Animace =====
@@ -145,57 +147,95 @@ function createProgressSegments() {
 document.addEventListener('DOMContentLoaded', () => {
   createProgressSegments();
 
-  // ===== Projekt Modal =====
+  // ===== Projekt Modal - slideshow funkce =====
   const projectModal = document.getElementById('projectModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalDetail = document.getElementById('modalDetail');
-  const modalSlideshow = document.querySelector('.modal-slideshow');
+  const modalSlideshow = document.getElementById('modalSlideshow');
+  const arrowLeft = document.getElementById('arrowLeft');
+  const arrowRight = document.getElementById('arrowRight');
 
-  // Funkce pro otevření modalu s obsahem projektu
+  let currentSlideIndex = 0;
+  let images = [];
+
+  // Otevře modal s informacemi o projektu
   function openProjectModal(tile) {
-    const title = tile.dataset.title;
-    const detail = tile.dataset.detail;
-    const slides = tile.dataset.slides.split(',');
+    // Nastavíme obsah
+    const title = tile.dataset.title || 'Neznámý projekt';
+    const detail = tile.dataset.detail || 'Bez detailů.';
+    const slidesStr = tile.dataset.slides || '';
+    const slidesArr = slidesStr.split(',');
 
-    // Nastavit obsah modalu
     modalTitle.textContent = title;
     modalDetail.textContent = detail;
 
-    // Vyčistit a naplnit slideshow
+    // Vyčistíme staré obrázky
     modalSlideshow.innerHTML = '';
-    slides.forEach((slide, index) => {
+    images = [];
+
+    // Vytvoříme obrázky
+    slidesArr.forEach((src, index) => {
       const img = document.createElement('img');
-      img.src = slide.trim();
+      img.src = src.trim();
       img.alt = `Slide ${index + 1}`;
-      if (index !== 0) img.style.display = 'none';
+      // V CSS je default opacity:0, tady přidáme .active jen prvnímu
+      if (index === 0) {
+        img.classList.add('active');
+      }
       modalSlideshow.appendChild(img);
+      images.push(img);
     });
 
-    // Zobrazit modal s GSAP animací
+    currentSlideIndex = 0;
     projectModal.style.display = 'flex';
+
+    // Animace otevření
     gsap.fromTo(projectModal, { opacity: 0 }, { duration: 0.3, opacity: 1 });
   }
 
-  // Zavření modalu
+  // Zavře modal
   function closeProjectModal() {
-    gsap.to(projectModal, { duration: 0.3, opacity: 0, onComplete: () => {
-      projectModal.style.display = 'none';
-    }});
+    gsap.to(projectModal, {
+      duration: 0.3,
+      opacity: 0,
+      onComplete: () => {
+        projectModal.style.display = 'none';
+      }
+    });
   }
 
-  // Přidat event listener na každý projekt-tile
+  // Změní slide
+  function showSlide(newIndex) {
+    if (!images.length) return;
+    // Ujistíme se, že index je v platném rozsahu
+    currentSlideIndex = (newIndex + images.length) % images.length;
+    images.forEach(img => img.classList.remove('active'));
+    images[currentSlideIndex].classList.add('active');
+  }
+
+  arrowLeft.addEventListener('click', (e) => {
+    e.stopPropagation(); // aby se modal nezavřel
+    showSlide(currentSlideIndex - 1);
+  });
+
+  arrowRight.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showSlide(currentSlideIndex + 1);
+  });
+
+  // Kliknutí mimo modal => zavřít
+  projectModal.addEventListener('click', (e) => {
+    if (e.target === projectModal) {
+      closeProjectModal();
+    }
+  });
+
+  // Přidáme eventListener na každou dlaždici
   document.querySelectorAll('.project-tile').forEach(tile => {
     tile.addEventListener('click', (e) => {
       e.preventDefault();
       openProjectModal(tile);
     });
-  });
-
-  // Zavřít modal při kliknutí mimo obsah modalu
-  projectModal.addEventListener('click', (e) => {
-    if (e.target === projectModal) {
-      closeProjectModal();
-    }
   });
 });
 
