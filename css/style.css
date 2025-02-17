@@ -381,22 +381,21 @@ footer {
 }
 
 .progress-segment .progress-button {
-  background: var(--accent-color);
+  background: #555; /* Default grey */
   color: var(--bg-color);
   padding: 5px 10px;
   border: none;
   border-radius: 20px;
   font-size: 0.8em;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: background 0.3s ease;
   margin-bottom: 5px;
   cursor: pointer;
 }
 
-/* Show the button if segment is filled or active */
+/* Turn green if the section is reached or active */
 .progress-segment.filled .progress-button,
 .progress-segment.active .progress-button {
-  opacity: 1;
+  background: var(--accent-color);
 }
 
 .segment-fill {

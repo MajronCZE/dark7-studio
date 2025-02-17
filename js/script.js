@@ -129,7 +129,7 @@ function createProgressSegments() {
     segment.className = 'progress-segment';
     segment.dataset.sectionId = section.id;
     
-    // Create navigation button
+    // Create navigation button (always visible)
     const button = document.createElement('button');
     button.className = 'progress-button';
     button.textContent = section.name;
