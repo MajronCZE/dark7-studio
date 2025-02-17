@@ -149,29 +149,6 @@ function createProgressSegments() {
 
 document.addEventListener('DOMContentLoaded', () => {
   createProgressSegments();
-
-  // ===== Flip Card Functionality for Project Tiles =====
-  document.querySelectorAll('.flip-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-      // Pokud klikneme na tlačítko Zavřít, flip se nespustí
-      if (e.target.classList.contains('close-flip')) return;
-      
-      if (!card.classList.contains('active')) {
-        card.classList.add('active');
-        card.classList.add('flipped');
-      }
-    });
-  });
-  
-  // Zavření karty
-  document.querySelectorAll('.close-flip').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation(); // zabrání kliku na kartu
-      const card = this.closest('.flip-card');
-      card.classList.remove('flipped');
-      card.classList.remove('active');
-    });
-  });
 });
 
 window.addEventListener('scroll', () => {
@@ -180,13 +157,12 @@ window.addEventListener('scroll', () => {
   sectionsOrder.forEach((section, index) => {
     const sectionEl = document.getElementById(section.id);
     if (sectionEl) {
-      // Consider the section "reached" if scroll je past offsetTop - half viewport
+      // Consider the section "reached" if the scroll is past its offsetTop minus half the viewport height
       const triggerPoint = sectionEl.offsetTop - window.innerHeight / 2;
       const segment = document.querySelector(`.progress-segment[data-section-id="${section.id}"]`);
       if (scrollTop >= triggerPoint) {
         segment.classList.add('filled');
-        
-        // Určení "active" segmentu (aktuální sekce)
+        // Determine active segment (current section) by comparing with next section's trigger point
         let nextTrigger = Infinity;
         if (index < sectionsOrder.length - 1) {
           const nextSectionEl = document.getElementById(sectionsOrder[index + 1].id);
