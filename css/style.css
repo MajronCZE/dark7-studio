@@ -216,7 +216,9 @@ section {
   line-height: 1.2;
 }
 
-.hero-content h1 .line { display: block; }
+.hero-content h1 .line { 
+  display: block; 
+}
 
 .hero-content .neon { 
   color: var(--accent-color); 
@@ -296,7 +298,7 @@ section {
 }
 
 /**************************************************************
-  Modal pro projekt – větší a se zaoblenými rohy
+  Modal pro projekt – menší, se zaoblenými rohy
 **************************************************************/
 .project-modal {
   position: fixed;
@@ -315,12 +317,13 @@ section {
 .modal-content {
   background: #141414;
   display: flex;
-  width: 95%;
-  max-width: 1200px;
-  max-height: 95%;
+  width: 80%;
+  max-width: 1000px;
+  max-height: 80%;
   border-radius: 20px;
   overflow: hidden;
   animation: fadeIn 0.3s ease-out;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
 @keyframes fadeIn {
@@ -335,9 +338,10 @@ section {
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
 }
 
-/* Obrázky v modal slideshow budou překrývat sebe a přechod bude řízen JS */
+/* Obrázky v modal slideshow se překrývají přes sebe a přepínají se pomocí .active */
 .modal-slideshow img {
   position: absolute;
   top: 0;
@@ -398,13 +402,17 @@ section {
 @media (max-width: 768px) {
   .modal-content {
     flex-direction: column;
+    width: 90%;
+    max-height: 90%;
   }
   .modal-slideshow,
   .modal-details {
     width: 100%;
+    position: relative;
+    border-left: none;
   }
   .modal-arrow {
-    display: none;
+    display: none; /* na mobilech klidně šipky schovat nebo upravit */
   }
 }
 

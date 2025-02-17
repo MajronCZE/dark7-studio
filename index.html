@@ -87,10 +87,10 @@
         <p>Klikni na dlaždici pro detail projektu.</p>
         <div class="project-grid">
           <!-- Projekt 1 -->
-          <div class="project-tile" 
-               data-title="Projekt 1" 
-               data-detail="Detailní informace o Projektu 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-               data-slides="https://dummyimage.com/400x300/000/fff&text=Slide+1,https://dummyimage.com/400x300/000/fff&text=Slide+2,https://dummyimage.com/400x300/000/fff&text=Slide+3">
+          <div class="project-tile"
+               data-title="Projekt 1"
+               data-detail="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin posuere velit ac ipsum porttitor ultricies. Vivamus laoreet mattis sapien, eu volutpat est dapibus a. Sed nec metus fermentum, bibendum enim at, blandit erat. Phasellus quis tellus ligula. Nunc luctus ligula ac nisl volutpat vulputate."
+               data-slides="https://dummyimage.com/600x400/000/fff&text=Slide+1,https://dummyimage.com/600x400/333/fff&text=Slide+2,https://dummyimage.com/600x400/555/fff&text=Slide+3">
             <div class="project-item">
               <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+1" alt="Ukázka projektu 1" loading="lazy" />
               <div class="project-info">
@@ -99,10 +99,10 @@
             </div>
           </div>
           <!-- Projekt 2 -->
-          <div class="project-tile" 
-               data-title="Projekt 2" 
-               data-detail="Detailní informace o Projektu 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-               data-slides="https://dummyimage.com/400x300/000/fff&text=Slide+1,https://dummyimage.com/400x300/000/fff&text=Slide+2,https://dummyimage.com/400x300/000/fff&text=Slide+3">
+          <div class="project-tile"
+               data-title="Projekt 2"
+               data-detail="Suspendisse potenti. Nulla a justo et felis tincidunt blandit eu vel neque. In tristique augue vel suscipit feugiat. Maecenas vulputate ultricies enim, eget vehicula lectus tempus ac. Nam non nunc fringilla, egestas purus at, porta tortor."
+               data-slides="https://dummyimage.com/600x400/111/fff&text=Slide+1,https://dummyimage.com/600x400/444/fff&text=Slide+2,https://dummyimage.com/600x400/666/fff&text=Slide+3">
             <div class="project-item">
               <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+2" alt="Ukázka projektu 2" loading="lazy" />
               <div class="project-info">
@@ -111,10 +111,10 @@
             </div>
           </div>
           <!-- Projekt 3 -->
-          <div class="project-tile" 
-               data-title="Projekt 3" 
-               data-detail="Detailní informace o Projektu 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-               data-slides="https://dummyimage.com/400x300/000/fff&text=Slide+1,https://dummyimage.com/400x300/000/fff&text=Slide+2,https://dummyimage.com/400x300/000/fff&text=Slide+3">
+          <div class="project-tile"
+               data-title="Projekt 3"
+               data-detail="Proin eu ultrices lectus, et convallis libero. Duis et placerat est, eu ultricies nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus feugiat dolor non tortor mollis, et laoreet nulla fermentum."
+               data-slides="https://dummyimage.com/600x400/222/fff&text=Slide+1,https://dummyimage.com/600x400/555/fff&text=Slide+2,https://dummyimage.com/600x400/777/fff&text=Slide+3">
             <div class="project-item">
               <img src="https://dummyimage.com/600x400/1f1f1f/ffffff&text=Projekt+3" alt="Ukázka projektu 3" loading="lazy" />
               <div class="project-info">
@@ -134,7 +134,7 @@
         <div class="team-profile">
           <img class="profile-pic" src="https://dummyimage.com/200x200/1f1f1f/ffffff&text=Kubo" alt="Profilová fotka Kuby" loading="lazy" />
           <div class="profile-info">
-            <h3>Jakub "Kubo"</h3>
+            <h3>Jakub &quot;Kubo&quot;</h3>
             <p>3D grafik, level designér, hororový nadšenec a indie vývojář.</p>
           </div>
         </div>
@@ -215,9 +215,13 @@
   <!-- Modal pro detail projektu -->
   <div id="projectModal" class="project-modal">
     <div class="modal-content">
-      <div class="modal-slideshow">
-        <!-- Obrázky budou generovány dynamicky -->
+      <!-- Slideshow (vlevo) -->
+      <div class="modal-slideshow" id="modalSlideshow">
+        <!-- Šipky pro ovládání slideshow -->
+        <button class="modal-arrow left" id="arrowLeft">&#10094;</button>
+        <button class="modal-arrow right" id="arrowRight">&#10095;</button>
       </div>
+      <!-- Detaily (vpravo) -->
       <div class="modal-details">
         <h3 id="modalTitle"></h3>
         <div id="modalDetail" class="modal-detail-content">
